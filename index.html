@@ -135,6 +135,11 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
   </ul>
 </nav>
 
@@ -187,7 +192,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-07-07 10:04:02 / 修改时间：10:34:07" itemprop="dateCreated datePublished" datetime="2020-07-07T10:04:02+08:00">2020-07-07</time>
+              <time title="创建时间：2020-07-07 10:04:02 / 修改时间：13:42:50" itemprop="dateCreated datePublished" datetime="2020-07-07T10:04:02+08:00">2020-07-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -208,6 +213,18 @@
               <span class="leancloud-visitors-count"></span>
             </span>
   
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2020/07/07/%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/07/%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
         </div>
@@ -220,16 +237,14 @@
 
       
           <p>我发现next主题真的是个好东西，什么东西都给我们写好了，添加很多组件都很方便。接下来记录一下如何添加讨论区。</p>
-<p>hexo上可用的讨论区有很多：valine、来必力、disqus、facebookcomments等等，这里选择valine作为博客使用的主力评论系统。valine是完全基于静态页面的本地评论区，加载迅速而且上手简单，而且支持markdown（简直不要太爽）。</p>
-<p>valine也是基于leancloud的服务，所以和添加阅读数量一样也需要先注册一个leancloud，并且在存储中新建一个comment类（可以参考我的<a href="https://nobilta.github.io/2020/07/07/%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E6%AC%A1%E6%95%B0/">上一篇博客</a>，其他操作相同）然后在next主题的配置文件中对valine进行配置。<br><img src="/images/4.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">enable:&#x2F;&#x2F;是否开启valine评论</span><br><span class="line">appid: &#x2F;&#x2F;你自己的id</span><br><span class="line">appkey: &#x2F;&#x2F;你自己的key</span><br><span class="line">notify: &#x2F;&#x2F;是否通过邮箱通知你</span><br><span class="line">verify: &#x2F;&#x2F;是否验证（反人类建议关闭）</span><br><span class="line">placeholder: &#x2F;&#x2F;评论区的默认标语</span><br><span class="line">avatar: &#x2F;&#x2F;头像</span><br><span class="line">guest_info: &#x2F;&#x2F;评论的人需要填什么信息</span><br><span class="line">pageSize: &#x2F;&#x2F;每页几个评论</span><br><span class="line">language: &#x2F;&#x2F;语言</span><br><span class="line">visitor: &#x2F;&#x2F;文章阅读稳定性相关（不太懂）</span><br><span class="line">comment_count:&#x2F;&#x2F;评论计数</span><br><span class="line">recordIP: &#x2F;&#x2F;记录ip（别人看不到）</span><br><span class="line">serverURLs: &#x2F;&#x2F;如果他没填写昵称的话显示的东西</span><br></pre></td></tr></table></figure>
-<p>开启评论之后，会在每个页面都显示评论，如果我们不想让它显示评论呢？（比如标签页和分类页）</p>
-<p>我们就需要在这篇文章的头部部分加上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">comment:false</span><br></pre></td></tr></table></figure>
-<p><img src="/images/5.png" alt=""><br>作为一个强迫症，在添加评论数后，头部没有做到全部汉化，评论数还显示valine是我难以忍受的，所以我们可以自己编译一下。在next文件夹中找到language文件夹，找到post部分，按照上面的样式添加一条：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">valine :评论数&#x2F;&#x2F;注意一定要有个空格</span><br></pre></td></tr></table></figure>
-<p>效果如图：<br><img src="/images/6.png" alt=""></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/07/%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -273,7 +288,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-07-07 09:12:55 / 修改时间：09:55:21" itemprop="dateCreated datePublished" datetime="2020-07-07T09:12:55+08:00">2020-07-07</time>
+              <time title="创建时间：2020-07-07 09:12:55 / 修改时间：11:55:37" itemprop="dateCreated datePublished" datetime="2020-07-07T09:12:55+08:00">2020-07-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -294,6 +309,18 @@
               <span class="leancloud-visitors-count"></span>
             </span>
   
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2020/07/07/%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E6%AC%A1%E6%95%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/07/%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E6%AC%A1%E6%95%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
         </div>
@@ -306,11 +333,14 @@
 
       
           <p>博客添加阅读次数是一件很有用<del>装逼</del>的事情，以下均是基于GitHub page+hexo+next主题进行配置。</p>
-<p>首先需要用到leancloud的服务，首先我们需要注册一个<a href="https://leancloud.cn/dashboard/login.html" target="_blank" rel="noopener">leancloud</a>，登陆后创建一个开发版的应用,这里面应用名称可随意填写 <del>（反正也可以改）</del>。<br><img src="/images/1.png" alt=""></p>
-<p>然后在存储中创建一个名为Conter的新class（注意权限都为所有用户）<br><img src="/images/2.png" alt=""></p>
-<p>然后在设置-安全中心-Web安全域名中填入自己博客的域名，以防被ban导致无法使用，然后进入应用Keys，将AppID和AppKey都复制下来一会会用到。</p>
-<p>接下来是本地的配置，由于next默认是支持这个功能的，所以我们只需要开启就好了，在next主题根目录下找到_config.yml文件，按照如图所示进行修改（appid和keyid填你自己的）<br><img src="/images/3.png" alt=""><br>注意一定要把security改为false，否则会提示你计数不可用（当然也有其他办法只不过我不太会233）<br>编译，上传，发现已经搞好了！</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/07/%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E6%AC%A1%E6%95%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -360,7 +390,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 09:16:13" itemprop="dateModified" datetime="2020-07-07T09:16:13+08:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 11:55:44" itemprop="dateModified" datetime="2020-07-07T11:55:44+08:00">2020-07-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -381,6 +411,18 @@
               <span class="leancloud-visitors-count"></span>
             </span>
   
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">评论数：</span>
+    
+    <a title="valine" href="/2020/07/06/%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/06/%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
         </div>
@@ -393,14 +435,14 @@
 
       
           <p>折腾了一周时间终于搭好了基于hexo的个人博客，使用了next主题 <del>（主要是可以白嫖github的域名和静态页面）</del><br>接下来博客还有很多需要完善的地方<del>（以及美化（逃））</del></p>
-<p><strong>预计功能有：</strong></p>
-<ul>
-<li>阅读量统计</li>
-<li>评论区</li>
-<li>以及美化 and so on…</li>
-</ul>
-<p>希望自己能坚持下来，将写博客这个好习惯保持下去</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/06/%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -530,7 +572,7 @@
   <span class="author" itemprop="copyrightHolder">只会python的菜鸡</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
 
         
 
@@ -652,8 +694,6 @@
 <script src="/js/next-boot.js"></script>
 
 
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/canvas_sphere.min.js"></script>
 
 
   
