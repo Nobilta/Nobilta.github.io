@@ -351,4 +351,24 @@
         <tag>回溯</tag>
       </tags>
   </entry>
+  <entry>
+    <title>搜索功能</title>
+    <url>/2020/09/22/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<p>一直觉得blog的搜索功能很有用<del>装x</del>，方便我们来查找自己曾经写过的东西，所以今天按照大佬的方法给博客加了个搜索的功能，操作很简单，有手就行<del>没有也行</del></p>
+<a id="more"></a>
+<p><a href="https://blog.csdn.net/lijing742180/article/details/87970909" target="_blank" rel="noopener">参考链接</a></p>
+<ul>
+<li>首先切换到博客目录下，安装hexo的搜索插件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
+安装后会自动创建一个search.xml，我个人理解是相当于创建了索引（因为是纯静态页面嘛）</li>
+<li>然后修改hexo的配置文件_config.yml（注意不是主题的），添加如下内容：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Search </span><br><span class="line">search:</span><br><span class="line">  path: .&#x2F;public&#x2F;search.xml &#x2F;&#x2F;索引的位置</span><br><span class="line">  field: post &#x2F;&#x2F;搜索的范围，默认post，也可以手动设置all、page等等</span><br><span class="line">  format: html &#x2F;&#x2F;搜索的类型</span><br><span class="line">  limit: 10000 &#x2F;&#x2F;限制搜索的条目数</span><br></pre></td></tr></table></figure></li>
+<li>接下来只要配置好主题相关内容就可以了，因为我用的是next主题，默认就有搜索功能的支持，所以我只要选择打开这个功能就可以了。在next的_config.xml文件中搜索local_search，然后做如下修改：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true &#x2F;&#x2F;开启搜索功能</span><br><span class="line">  trigger: auto</span><br><span class="line">  top_n_per_article: 1</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>本地搜索</tag>
+      </tags>
+  </entry>
 </search>
