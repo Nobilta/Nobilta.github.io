@@ -398,4 +398,29 @@
         <tag>回溯</tag>
       </tags>
   </entry>
+  <entry>
+    <title>哈希表</title>
+    <url>/2020/09/22/%E5%93%88%E5%B8%8C%E8%A1%A8/</url>
+    <content><![CDATA[<p>在c++ STL中还有一种重要的数据结构，它虽然不在标准的stl库中，但是用途广泛速度奇快，这就是哈希表。</p>
+<a id="more"></a>
+<p><a href="https://blog.csdn.net/u010025211/article/details/46653519" target="_blank" rel="noopener">参考链接</a><br>哈希表和map类似，也是提供一个关键字和一个数据存储，并且一一对应，但是与map不同的是，map的底层实现是依靠<a href="/2020/09/15/%E7%BA%A2%E9%BB%91%E6%A0%91/" title="红黑树">红黑树</a>。</p>
+<p>既然提到了红黑树，那就一定要把红黑树和哈希表进行一下对比：</p>
+<ul>
+<li>时间复杂度上，哈希表的速度要远超红黑树，尤其数据量越大越明显，哈希表为O(1)常数级，而红黑树为O(logn)，但是极端情况下哈希表可能会到O(n)，反而不如红黑树</li>
+<li>空间复杂度上，红黑树为树形结构，数据存在每个节点中，而例如map只储存节点的指针关系，但是哈希表为先申请一大块内存，将每一个数据和key存入一个个桶中，所以如果对空间要求较高，优先使用红黑树</li>
+<li>其他方面，以哈希表为底层结构的stl容器，在插入删除操作后，它所对应的迭代器不会发生变化（上一条中已经说过了，这些容器只是储存指针的位置，增删也只是调整指针，在内存中块内存并没有发生改变，所以迭代器继续有效），而哈希表是利用桶，每次插入需要加入一个新的桶，或将已存在的桶转移扩大，操作内存可能会导致迭代器失效。（如果对哈希表的其中一个桶进行erase（擦除操作），是将此桶对应的映射擦除，而不影响其他桶的迭代器。）</li>
+</ul>
+<p>在我的理解中，哈希表是类似vector/数组的一段连续的内存，所以可以通过直接访问“下标”的方式来访问我们需要的value（下标即为key值，但实际储存时为哈希值，下文会说），这样直接访问的方式当然要比平衡二叉树的查找要快得多。</p>
+<p>在我们向哈希表中插入元素的时候，首先获取key值，然后通过哈希函数得到哈希值，再通过哈希值获得“桶号”，最后将key和value存入桶中；取出元素时则进行逆向操作，获取key，得到哈希值，得到桶号，比较key值是否相等，相等则得到对应的value，否则返回false。而只要是常见的内建数据类型，我们就可以直接使用自带的hash模板。<br>附c++ hash函数模板源码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hash</span>&lt;int&gt; &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">size_t</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> __x)</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> __x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hash</span>&lt;char*&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;const char*&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;char&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned char&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;signed char&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;short&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned short&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;int&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned int&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;long&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned long&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>哈希表</tag>
+      </tags>
+  </entry>
 </search>
