@@ -21,20 +21,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode#117</title>
-    <url>/2020/09/28/LeetCode-117/</url>
-    <content><![CDATA[<h2 id="LeetCode-117填充每个节点的下一个右侧节点指针-II"><a href="#LeetCode-117填充每个节点的下一个右侧节点指针-II" class="headerlink" title="LeetCode#117填充每个节点的下一个右侧节点指针 II"></a>LeetCode#117填充每个节点的下一个右侧节点指针 II</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/" target="_blank" rel="noopener">题目链接</a><br>一开始让我想简单了，忽略了next节点可能是另一棵树上的可能性了<del>人傻了</del>，其实我们就可以简单理解为一个广度优先搜索，分别遍历每一层，在同一层时，当前节点的是上一个节点的next节点（第一个节点除外），我们可以每次把第一个节点作为空指针，让最后一个节点指向它。<br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">public:</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    Node* left;</span></span><br><span class="line"><span class="comment">    Node* right;</span></span><br><span class="line"><span class="comment">    Node* next;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    Node() : val(0), left(NULL), right(NULL), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    Node(int _val, Node* _left, Node* _right, Node* _next)</span></span><br><span class="line"><span class="comment">        : val(_val), left(_left), right(_right), next(_next) &#123;&#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">connect</span><span class="params">(Node* root)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        root -&gt; next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;Node*&gt;qu;</span><br><span class="line">        qu.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!qu.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> length = qu.<span class="built_in">size</span>();</span><br><span class="line">            Node* old = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; length ; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Node* temp = qu.front();</span><br><span class="line">                qu.pop();</span><br><span class="line">                <span class="keyword">if</span>(temp -&gt; left != <span class="literal">nullptr</span>)</span><br><span class="line">                    qu.push(temp -&gt;left);</span><br><span class="line">                <span class="keyword">if</span>(temp -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">                    qu.push(temp -&gt; right);</span><br><span class="line">                <span class="keyword">if</span>(i != <span class="number">0</span>)</span><br><span class="line">                    old -&gt; next = temp;</span><br><span class="line">                old = temp;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">return</span> root; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>bfs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode#37</title>
     <url>/2020/09/15/LeetCode-37/</url>
     <content><![CDATA[<h2 id="LeetCode-37解数独"><a href="#LeetCode-37解数独" class="headerlink" title="LeetCode#37解数独"></a>LeetCode#37解数独</h2><a id="more"></a>
@@ -49,6 +35,48 @@
         <tag>c++</tag>
         <tag>深搜</tag>
         <tag>回溯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#117</title>
+    <url>/2020/09/28/LeetCode-117/</url>
+    <content><![CDATA[<h2 id="LeetCode-117填充每个节点的下一个右侧节点指针-II"><a href="#LeetCode-117填充每个节点的下一个右侧节点指针-II" class="headerlink" title="LeetCode#117填充每个节点的下一个右侧节点指针 II"></a>LeetCode#117填充每个节点的下一个右侧节点指针 II</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node-ii/" target="_blank" rel="noopener">题目链接</a><br>一开始让我想简单了，忽略了next节点可能是另一棵树上的可能性了<del>人傻了</del>，其实我们就可以简单理解为一个广度优先搜索，分别遍历每一层，在同一层时，当前节点的是上一个节点的next节点（第一个节点除外），我们可以每次把第一个节点作为空指针，让最后一个节点指向它。<br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">// Definition for a Node.</span></span><br><span class="line"><span class="comment">class Node &#123;</span></span><br><span class="line"><span class="comment">public:</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    Node* left;</span></span><br><span class="line"><span class="comment">    Node* right;</span></span><br><span class="line"><span class="comment">    Node* next;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    Node() : val(0), left(NULL), right(NULL), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    Node(int _val, Node* _left, Node* _right, Node* _next)</span></span><br><span class="line"><span class="comment">        : val(_val), left(_left), right(_right), next(_next) &#123;&#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">connect</span><span class="params">(Node* root)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        root -&gt; next = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="built_in">queue</span>&lt;Node*&gt;qu;</span><br><span class="line">        qu.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!qu.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> length = qu.<span class="built_in">size</span>();</span><br><span class="line">            Node* old = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; length ; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                Node* temp = qu.front();</span><br><span class="line">                qu.pop();</span><br><span class="line">                <span class="keyword">if</span>(temp -&gt; left != <span class="literal">nullptr</span>)</span><br><span class="line">                    qu.push(temp -&gt;left);</span><br><span class="line">                <span class="keyword">if</span>(temp -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">                    qu.push(temp -&gt; right);</span><br><span class="line">                <span class="keyword">if</span>(i != <span class="number">0</span>)</span><br><span class="line">                    old -&gt; next = temp;</span><br><span class="line">                old = temp;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">return</span> root; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>bfs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#404</title>
+    <url>/2020/09/19/LeetCode-404/</url>
+    <content><![CDATA[<h2 id="LeetCode-404左叶子子之和"><a href="#LeetCode-404左叶子子之和" class="headerlink" title="LeetCode#404左叶子子之和"></a>LeetCode#404左叶子子之和</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/sum-of-left-leaves/" target="_blank" rel="noopener">题目链接</a><br>深搜遍历每个节点，判断一下是否为左叶子节点即可，没啥好说的，我是用一个标记flag来记录是否为左节点的，如果不是则直接继续遍历<br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node,<span class="keyword">long</span> <span class="keyword">long</span> &amp;ans,<span class="keyword">int</span> flag)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left == <span class="literal">nullptr</span> &amp;&amp;  node -&gt; right == <span class="literal">nullptr</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ans+=node -&gt; val;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;left,ans,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;right,ans,<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;left,ans,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;right,ans,<span class="number">0</span>);            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sumOfLeftLeaves</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        dfs(root,ans,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>深搜</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#474</title>
+    <url>/2020/09/12/LeetCode-474/</url>
+    <content><![CDATA[<h2 id="LeetCode-474一和零"><a href="#LeetCode-474一和零" class="headerlink" title="LeetCode#474一和零"></a>LeetCode#474一和零</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/ones-and-zeroes/" target="_blank" rel="noopener">链接</a><br>三维动规，可以循环判断每一个包含的字符串从而进行空间优化，注意在动规的时候需要从后往前找（即从m-&gt;cnt1,n-&gt;cnt2，从前往后会影响之前的状态<del>改了好久，菜啊</del>）动态规划可太快乐了。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">200</span>][<span class="number">200</span>];</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMaxForm</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; strs.<span class="built_in">size</span>() ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt1 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> cnt2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j  = <span class="number">0</span> ; j &lt; strs[i].<span class="built_in">size</span>() ; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(strs[i][j] == <span class="string">'0'</span>)</span><br><span class="line">                    cnt1++;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    cnt2++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = m ; j &gt;= cnt1 ;j --)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = n ; k &gt;= cnt2 ; k --)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j][k] = <span class="built_in">max</span>(dp[j][k],dp[j-cnt1][k-cnt2]+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -69,34 +97,6 @@
         <tag>c++</tag>
         <tag>回溯</tag>
         <tag>vector</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode#474</title>
-    <url>/2020/09/12/LeetCode-474/</url>
-    <content><![CDATA[<h2 id="LeetCode-474一和零"><a href="#LeetCode-474一和零" class="headerlink" title="LeetCode#474一和零"></a>LeetCode#474一和零</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/ones-and-zeroes/" target="_blank" rel="noopener">链接</a><br>三维动规，可以循环判断每一个包含的字符串从而进行空间优化，注意在动规的时候需要从后往前找（即从m-&gt;cnt1,n-&gt;cnt2，从前往后会影响之前的状态<del>改了好久，菜啊</del>）动态规划可太快乐了。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">200</span>][<span class="number">200</span>];</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMaxForm</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; strs.<span class="built_in">size</span>() ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt1 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> cnt2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j  = <span class="number">0</span> ; j &lt; strs[i].<span class="built_in">size</span>() ; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(strs[i][j] == <span class="string">'0'</span>)</span><br><span class="line">                    cnt1++;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    cnt2++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = m ; j &gt;= cnt1 ;j --)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = n ; k &gt;= cnt2 ; k --)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j][k] = <span class="built_in">max</span>(dp[j][k],dp[j-cnt1][k-cnt2]+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>动态规划</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode#404</title>
-    <url>/2020/09/19/LeetCode-404/</url>
-    <content><![CDATA[<h2 id="LeetCode-404左叶子子之和"><a href="#LeetCode-404左叶子子之和" class="headerlink" title="LeetCode#404左叶子子之和"></a>LeetCode#404左叶子子之和</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/sum-of-left-leaves/" target="_blank" rel="noopener">题目链接</a><br>深搜遍历每个节点，判断一下是否为左叶子节点即可，没啥好说的，我是用一个标记flag来记录是否为左节点的，如果不是则直接继续遍历<br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node,<span class="keyword">long</span> <span class="keyword">long</span> &amp;ans,<span class="keyword">int</span> flag)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left == <span class="literal">nullptr</span> &amp;&amp;  node -&gt; right == <span class="literal">nullptr</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ans+=node -&gt; val;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;left,ans,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;right,ans,<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;left,ans,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;right,ans,<span class="number">0</span>);            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sumOfLeftLeaves</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        dfs(root,ans,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>深搜</tag>
       </tags>
   </entry>
   <entry>
@@ -262,9 +262,33 @@
       </tags>
   </entry>
   <entry>
-    <title>Morris排序</title>
-    <url>/2020/09/24/Morris%E6%8E%92%E5%BA%8F/</url>
-    <content><![CDATA[]]></content>
+    <title>mysql远程连接</title>
+    <url>/2020/07/14/mysql%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</url>
+    <content><![CDATA[<p>今天记录一个困扰了我很久，每次都是莫名其妙发生又莫名其妙解决的问题：当使用navicat连接远程数据库时无法连接（错误代码2003或其他）问题的简单分析和解决方案。</p>
+<a id="more"></a>
+<p>当远程连接mysql数据库连接失败时，一般分为几种情况：</p>
+<ul>
+<li>未授予远程账号使用root连接的权限</li>
+<li>在配置文件中限定了只有本地IP可以连接</li>
+<li>Linux系统防火墙对3306端口（或其他指定端口）进行了限制<h2 id="授予远程账号访问权限"><a href="#授予远程账号访问权限" class="headerlink" title="授予远程账号访问权限"></a>授予远程账号访问权限</h2>在终端登陆mysql，选择mysql数据库之后查询user表中的host信息<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; select user,password,host from user;</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| user | password                                  | host           |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | localhost      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | 127.0.0.1      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | ::1            |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
+可以看到当用户为root时，只有本地账户可以进行连接，我们只需要把localhost修改为%即可。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">update user set host&#x3D;&quot;%&quot; where host&#x3D;&quot;localhost&quot;;</span><br></pre></td></tr></table></figure>
+<h2 id="解除配置文件只允许本地连接的限制"><a href="#解除配置文件只允许本地连接的限制" class="headerlink" title="解除配置文件只允许本地连接的限制"></a>解除配置文件只允许本地连接的限制</h2>找到my.conf(一般在/etc/my.conf或/etc/mysql/my.conf，版本不同会造成差异)，将下面的代码注释掉。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bind-address &#x3D; 127.0.0.1</span><br></pre></td></tr></table></figure>
+<h2 id="解除linux对端口的限制"><a href="#解除linux对端口的限制" class="headerlink" title="解除linux对端口的限制"></a>解除linux对端口的限制</h2>前面两个问题其实大部分时候都会注意到，这最后一个可真是困扰了我好久<br><del>（菜）</del>。</li>
+</ul>
+<p>首先是iptables，经过查阅资料我发现tables本身就是linux内核的一部分所以无法删除<br><del>（我还天真的想把它删了）</del><br>所以我们要做的是直接解除iptables对所有端口的限制：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">iptables -P INPUT ACCEPT</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line">iptables -P FORWARD ACCEPT</span><br><span class="line">iptables -F</span><br></pre></td></tr></table></figure>
+<p>然后如果开启了ufw，也需要关闭：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw disable</span><br></pre></td></tr></table></figure>
+
+<p>最后不要忘记重启MySQL服务。</p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>Navicat</tag>
+      </tags>
   </entry>
   <entry>
     <title>hexo-next主题的美化</title>
@@ -304,49 +328,6 @@
       </tags>
   </entry>
   <entry>
-    <title>mysql远程连接</title>
-    <url>/2020/07/14/mysql%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</url>
-    <content><![CDATA[<p>今天记录一个困扰了我很久，每次都是莫名其妙发生又莫名其妙解决的问题：当使用navicat连接远程数据库时无法连接（错误代码2003或其他）问题的简单分析和解决方案。</p>
-<a id="more"></a>
-<p>当远程连接mysql数据库连接失败时，一般分为几种情况：</p>
-<ul>
-<li>未授予远程账号使用root连接的权限</li>
-<li>在配置文件中限定了只有本地IP可以连接</li>
-<li>Linux系统防火墙对3306端口（或其他指定端口）进行了限制<h2 id="授予远程账号访问权限"><a href="#授予远程账号访问权限" class="headerlink" title="授予远程账号访问权限"></a>授予远程账号访问权限</h2>在终端登陆mysql，选择mysql数据库之后查询user表中的host信息<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; select user,password,host from user;</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| user | password                                  | host           |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | localhost      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | 127.0.0.1      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | ::1            |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
-可以看到当用户为root时，只有本地账户可以进行连接，我们只需要把localhost修改为%即可。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">update user set host&#x3D;&quot;%&quot; where host&#x3D;&quot;localhost&quot;;</span><br></pre></td></tr></table></figure>
-<h2 id="解除配置文件只允许本地连接的限制"><a href="#解除配置文件只允许本地连接的限制" class="headerlink" title="解除配置文件只允许本地连接的限制"></a>解除配置文件只允许本地连接的限制</h2>找到my.conf(一般在/etc/my.conf或/etc/mysql/my.conf，版本不同会造成差异)，将下面的代码注释掉。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bind-address &#x3D; 127.0.0.1</span><br></pre></td></tr></table></figure>
-<h2 id="解除linux对端口的限制"><a href="#解除linux对端口的限制" class="headerlink" title="解除linux对端口的限制"></a>解除linux对端口的限制</h2>前面两个问题其实大部分时候都会注意到，这最后一个可真是困扰了我好久<br><del>（菜）</del>。</li>
-</ul>
-<p>首先是iptables，经过查阅资料我发现tables本身就是linux内核的一部分所以无法删除<br><del>（我还天真的想把它删了）</del><br>所以我们要做的是直接解除iptables对所有端口的限制：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">iptables -P INPUT ACCEPT</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line">iptables -P FORWARD ACCEPT</span><br><span class="line">iptables -F</span><br></pre></td></tr></table></figure>
-<p>然后如果开启了ufw，也需要关闭：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw disable</span><br></pre></td></tr></table></figure>
-
-<p>最后不要忘记重启MySQL服务。</p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-        <tag>Navicat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vscode远程编程</title>
-    <url>/2020/09/23/vscode%E8%BF%9C%E7%A8%8B%E7%BC%96%E7%A8%8B/</url>
-    <content><![CDATA[<p>最近在学习c++的多线程和网络流，突然发现好多函数在windows下无法实现，就想起了尝试一下vscode的远程编程。</p>
-<a id="more"></a>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>远程编程</tag>
-        <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>哈希表</title>
     <url>/2020/09/22/%E5%93%88%E5%B8%8C%E8%A1%A8/</url>
     <content><![CDATA[<p>在c++ STL中还有一种重要的数据结构，它虽然不在标准的stl库中，但是用途广泛速度奇快，这就是哈希表。</p>
@@ -369,6 +350,31 @@
       <tags>
         <tag>c++</tag>
         <tag>哈希表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode远程编程</title>
+    <url>/2020/09/23/vscode%E8%BF%9C%E7%A8%8B%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<p>最近在学习c++的多线程和网络流，突然发现好多函数在windows下无法实现，就想起了尝试一下VSCode的远程编程。</p>
+<a id="more"></a>
+<p><a href="https://zhuanlan.zhihu.com/p/64849549" target="_blank" rel="noopener">参考链接</a><br>远程编程顾名思义，在本地的VSCodeIDE上连接远程服务器，直接将文件写在远程环境上，当然调试也是在更符合实际服务器工作环境的Linux上进行。<del>Linux确实香，但是真的不喜欢用</del><br>其实这个功能主要是依靠于VSCode最近几个版本终于加入了正式支持的远程编程功能插件，它可以实现：</p>
+<ul>
+<li>SSH连接虚拟机/实体服务器编程</li>
+<li>连接容器</li>
+<li>连接WSL（Linux子系统）~~不过我还没用过<br>然后我们需要做个准备工作，生成你的id_rsa文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -P &#39;&#39; -f ~&#x2F;.ssh&#x2F;id_rsa</span><br></pre></td></tr></table></figure>
+安装过程其实也并不麻烦，我简单的把它分为以下几步：</li>
+<li>在VSCode上的配置其实十分的简单，我们只需要在插件中搜索SSH，并安装Remote-SSH即可。</li>
+<li>然后需要在左侧栏中找到你的远程资源管理器，选择新建或者设置ssh\config（这需要你提前安装了Open-SSH，<del>如果这个都没安装的话谈什么远程编程</del>）<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Host CentOS&#x2F;&#x2F;别名</span><br><span class="line">    HostName 192.168.91.132&#x2F;&#x2F;连接的ip地址</span><br><span class="line">    User root&#x2F;&#x2F;登陆的用户名</span><br><span class="line">    Port 22&#x2F;&#x2F;端口，ssh一般都是22吧</span><br><span class="line">    IdentityFile C:\Users\xxx（用户名）\.ssh\id_rsa.pub&#x2F;&#x2F;你电脑的公钥位置</span><br></pre></td></tr></table></figure>
+然后把你的公钥传到你的服务器上，比如我们可以使用：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-copy-id 你的用户名@你的IP</span><br><span class="line">&#x2F;&#x2F;例如 ssh-copy-id username@192.168.1.1</span><br></pre></td></tr></table></figure>
+这下就基本完成了，只需要再启动一下你的远程窗口就ok了，enjoy it~</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>远程编程</tag>
+        <tag>vscode</tag>
       </tags>
   </entry>
   <entry>
