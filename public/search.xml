@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>LeetCode#18</title>
-    <url>/2020/10/06/LeetCode-18/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>LeetCode#18四数之和</p>
-<a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/4sum/" target="_blank" rel="noopener">题目链接</a><br>其实这道题本质上就是一个四层循环判断所有可能性…还以为题解有什么高深的算法呢<del>(逃</del><br>为了避免有重复的结果出现，我们首先需要进行排序，然后如果是相同的数看作一种情况，为了降低时间复杂度，题解进行了几个剪枝：首先把所有大于的情况直接break掉，然后是在剩两个数的时候做了一个双指针，如果小于结果，就只判断左指针的右侧，如果大于结果，就只判断右指针的左侧<br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">fourSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; quadruplets;</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() &lt; <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> quadruplets;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());<span class="comment">//先排序</span></span><br><span class="line">        <span class="keyword">int</span> length = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length - <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;<span class="comment">//相邻的两个数相同看作同一种情况，每层循环都需要判断</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[i + <span class="number">1</span>] + nums[i + <span class="number">2</span>] + nums[i + <span class="number">3</span>] &gt; target) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[length - <span class="number">3</span>] + nums[length - <span class="number">2</span>] + nums[length - <span class="number">1</span>] &lt; target) &#123;<span class="comment">//两个if进行第一层剪枝，下同</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; length - <span class="number">2</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt; i + <span class="number">1</span> &amp;&amp; nums[j] == nums[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] + nums[j + <span class="number">1</span>] + nums[j + <span class="number">2</span>] &gt; target) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] + nums[length - <span class="number">2</span>] + nums[length - <span class="number">1</span>] &lt; target) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> left = j + <span class="number">1</span>, right = length - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (left &lt; right) &#123;<span class="comment">//使用双指针，逐渐逼近正确范围</span></span><br><span class="line">                    <span class="keyword">int</span> sum = nums[i] + nums[j] + nums[left] + nums[right];</span><br><span class="line">                    <span class="keyword">if</span> (sum == target) &#123;</span><br><span class="line">                        quadruplets.push_back(&#123;nums[i], nums[j], nums[left], nums[right]&#125;);</span><br><span class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[left] == nums[left + <span class="number">1</span>]) &#123;</span><br><span class="line">                            left++;</span><br><span class="line">                        &#125;</span><br><span class="line">                        left++;</span><br><span class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[right] == nums[right - <span class="number">1</span>]) &#123;</span><br><span class="line">                            right--;</span><br><span class="line">                        &#125;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; target) &#123;</span><br><span class="line">                        left++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> quadruplets;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode#2</title>
     <url>/2020/10/04/LeetCode-2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-2两数相加"><a href="#LeetCode-2两数相加" class="headerlink" title="LeetCode#2两数相加"></a>LeetCode#2两数相加</h2><a id="more"></a>
@@ -109,20 +95,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode#771</title>
-    <url>/2020/10/02/LeetCode-771/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-771宝石与石头"><a href="#LeetCode-771宝石与石头" class="headerlink" title="LeetCode#771宝石与石头"></a>LeetCode#771宝石与石头</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/jewels-and-stones/" target="_blank" rel="noopener">题目链接</a><br>特别水特别水的一道题，我主要是为了记录哈希表怎么使用的<del>不得不说哈希表真的快，击败100%</del><br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(<span class="built_in">string</span> J, <span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length1 = J.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> length2 = S.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt;ha;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; length2 ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ha[S[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; length1 ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cnt+=ha[J[i]];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>哈希表</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode#117</title>
     <url>/2020/09/28/LeetCode-117/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-117填充每个节点的下一个右侧节点指针-II"><a href="#LeetCode-117填充每个节点的下一个右侧节点指针-II" class="headerlink" title="LeetCode#117填充每个节点的下一个右侧节点指针 II"></a>LeetCode#117填充每个节点的下一个右侧节点指针 II</h2><a id="more"></a>
@@ -134,6 +106,35 @@
       <tags>
         <tag>c++</tag>
         <tag>bfs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#78</title>
+    <url>/2020/09/20/LeetCode-78/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-78子集"><a href="#LeetCode-78子集" class="headerlink" title="LeetCode#78子集"></a>LeetCode#78子集</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/subsets/submissions/" target="_blank" rel="noopener">题目链接</a><br>一道基础的回溯题<del>(这几天怎么都是回溯)</del>与全排列问题类似，区别是需要在每一次遍历的时候分别保存结果，而不是当找到nums.size()的时候再保存结果<br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums,<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; ans,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;temp,<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pos == nums.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = pos ; i &lt; nums.<span class="built_in">size</span>() ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            temp.push_back(nums[i]);</span><br><span class="line">            ans.push_back(temp);</span><br><span class="line">            dfs(nums,ans,temp,i+<span class="number">1</span>);</span><br><span class="line">            temp.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">subsets</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;ans;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;temp;</span><br><span class="line">        ans.push_back(temp);</span><br><span class="line">        dfs(nums,ans,temp,<span class="number">0</span>);   </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>回溯</tag>
+        <tag>深搜</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#771</title>
+    <url>/2020/10/02/LeetCode-771/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-771宝石与石头"><a href="#LeetCode-771宝石与石头" class="headerlink" title="LeetCode#771宝石与石头"></a>LeetCode#771宝石与石头</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/jewels-and-stones/" target="_blank" rel="noopener">题目链接</a><br>特别水特别水的一道题，我主要是为了记录哈希表怎么使用的<del>不得不说哈希表真的快，击败100%</del><br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(<span class="built_in">string</span> J, <span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length1 = J.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> length2 = S.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt;ha;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; length2 ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ha[S[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; length1 ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cnt+=ha[J[i]];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>哈希表</tag>
       </tags>
   </entry>
   <entry>
@@ -205,21 +206,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode#78</title>
-    <url>/2020/09/20/LeetCode-78/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-78子集"><a href="#LeetCode-78子集" class="headerlink" title="LeetCode#78子集"></a>LeetCode#78子集</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/subsets/submissions/" target="_blank" rel="noopener">题目链接</a><br>一道基础的回溯题<del>(这几天怎么都是回溯)</del>与全排列问题类似，区别是需要在每一次遍历的时候分别保存结果，而不是当找到nums.size()的时候再保存结果<br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums,<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; ans,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;temp,<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pos == nums.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = pos ; i &lt; nums.<span class="built_in">size</span>() ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            temp.push_back(nums[i]);</span><br><span class="line">            ans.push_back(temp);</span><br><span class="line">            dfs(nums,ans,temp,i+<span class="number">1</span>);</span><br><span class="line">            temp.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">subsets</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;ans;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;temp;</span><br><span class="line">        ans.push_back(temp);</span><br><span class="line">        dfs(nums,ans,temp,<span class="number">0</span>);   </span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>回溯</tag>
-        <tag>深搜</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Leetcode#538</title>
     <url>/2020/09/21/Leetcode-538/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Leetcode-538把二叉搜索树转换为累加树"><a href="#Leetcode-538把二叉搜索树转换为累加树" class="headerlink" title="Leetcode#538把二叉搜索树转换为累加树"></a>Leetcode#538把二叉搜索树转换为累加树</h2><a id="more"></a>
@@ -237,27 +223,33 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode#94</title>
-    <url>/2020/09/14/LeetCode-94/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-94二叉树的中序遍历"><a href="#LeetCode-94二叉树的中序遍历" class="headerlink" title="LeetCode#94二叉树的中序遍历"></a>LeetCode#94二叉树的中序遍历</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">题目链接</a></p>
-<p>二叉树的中序遍历，首先我们来看一下二叉树的前序（VLR）、中序（LDR）、后序（LRD）遍历的定义:</p>
-<p>前序遍历：先访问根节点，再遍历左子树，最后遍历右子树</p>
-<p>中序遍历：先遍历左子树，再访问根节点，最后遍历右子树</p>
-<p>后序遍历：先遍历左子树，再访问右子树，最后访问根节点</p>
-<p>有了三种遍历的定义，我们在举个例子具体看一下：<br><img src="/images/erchashu.png" alt=""></p>
-<p>先序遍历：123564</p>
-<p>中序遍历：153624</p>
-<p>后续遍历：563421</p>
-<p>结合这个具体的例子是不是就理解了呢？</p>
-<p>理解了中序遍历，代码就很好理解了，先判断当前节点是否右左子树，如果有则继续遍历，没有则直接将当前节点存入答案，最后再遍历右子树。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;ans;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node)</span></span></span><br><span class="line"><span class="function">    </span>&#123;<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(node -&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">            dfs(node -&gt; left);</span><br><span class="line">        ans.push_back(node -&gt; val);</span><br><span class="line">        <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">            dfs(node -&gt; right); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        dfs(root);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>LeetCode#18</title>
+    <url>/2020/10/06/LeetCode-18/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>LeetCode#18四数之和</p>
+<a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/4sum/" target="_blank" rel="noopener">题目链接</a><br>其实这道题本质上就是一个四层循环判断所有可能性…还以为题解有什么高深的算法呢<del>(逃</del><br>为了避免有重复的结果出现，我们首先需要进行排序，然后如果是相同的数看作一种情况，为了降低时间复杂度，题解进行了几个剪枝：首先把所有大于的情况直接break掉，然后是在剩两个数的时候做了一个双指针，如果小于结果，就只判断左指针的右侧，如果大于结果，就只判断右指针的左侧<br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">fourSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; quadruplets;</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() &lt; <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> quadruplets;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());<span class="comment">//先排序</span></span><br><span class="line">        <span class="keyword">int</span> length = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length - <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;<span class="comment">//相邻的两个数相同看作同一种情况，每层循环都需要判断</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[i + <span class="number">1</span>] + nums[i + <span class="number">2</span>] + nums[i + <span class="number">3</span>] &gt; target) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[length - <span class="number">3</span>] + nums[length - <span class="number">2</span>] + nums[length - <span class="number">1</span>] &lt; target) &#123;<span class="comment">//两个if进行第一层剪枝，下同</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; length - <span class="number">2</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt; i + <span class="number">1</span> &amp;&amp; nums[j] == nums[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] + nums[j + <span class="number">1</span>] + nums[j + <span class="number">2</span>] &gt; target) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] + nums[length - <span class="number">2</span>] + nums[length - <span class="number">1</span>] &lt; target) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> left = j + <span class="number">1</span>, right = length - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (left &lt; right) &#123;<span class="comment">//使用双指针，逐渐逼近正确范围</span></span><br><span class="line">                    <span class="keyword">int</span> sum = nums[i] + nums[j] + nums[left] + nums[right];</span><br><span class="line">                    <span class="keyword">if</span> (sum == target) &#123;</span><br><span class="line">                        quadruplets.push_back(&#123;nums[i], nums[j], nums[left], nums[right]&#125;);</span><br><span class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[left] == nums[left + <span class="number">1</span>]) &#123;</span><br><span class="line">                            left++;</span><br><span class="line">                        &#125;</span><br><span class="line">                        left++;</span><br><span class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[right] == nums[right - <span class="number">1</span>]) &#123;</span><br><span class="line">                            right--;</span><br><span class="line">                        &#125;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; target) &#123;</span><br><span class="line">                        left++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> quadruplets;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
         <tag>c++</tag>
-        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Leetcode#637</title>
+    <url>/2020/09/12/Leetcode-637/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Leetcode-637二叉树的层平均值"><a href="#Leetcode-637二叉树的层平均值" class="headerlink" title="Leetcode#637二叉树的层平均值"></a>Leetcode#637二叉树的层平均值</h2><a id="more"></a>
+<p>水题，直接一个裸的广搜，按层遍历树的每一层即可</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="built_in">queue</span>&lt;TreeNode*&gt;qu;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;ans;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; <span class="title">averageOfLevels</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        qu.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!qu.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt = qu.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">double</span> temp = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; cnt ;i ++)</span><br><span class="line">            &#123;</span><br><span class="line">                temp += qu.front() -&gt; val;</span><br><span class="line">                <span class="keyword">if</span>(qu.front() -&gt; left != <span class="literal">NULL</span>)</span><br><span class="line">                    qu.push(qu.front() -&gt; left);</span><br><span class="line">                <span class="keyword">if</span>(qu.front() -&gt; right != <span class="literal">NULL</span>)</span><br><span class="line">                    qu.push(qu.front() -&gt; right);</span><br><span class="line">                qu.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            ans.push_back(temp/cnt);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><del>尝试用auto声明居然出现了误差，不知道为什么会自动成int类型，果然还是菜啊</del></p>
+]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>dfs</tag>
       </tags>
   </entry>
   <entry>
@@ -275,6 +267,20 @@
         <tag>c++</tag>
         <tag>回溯</tag>
         <tag>深搜</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#701</title>
+    <url>/2020/09/30/LeetCode-701/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-701二叉搜索树中的插入操作"><a href="#LeetCode-701二叉搜索树中的插入操作" class="headerlink" title="LeetCode#701二叉搜索树中的插入操作"></a>LeetCode#701二叉搜索树中的插入操作</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/" target="_blank" rel="noopener">链接</a><br>因为是二叉搜索树，所以遍历起来十分的简单，我是使用递归实现的，如果当前节点的值大于给定值，就找右子树，反之找左子树（题目说了不包含重复的情况），如果找到空节点就，就把给定值新建一个节点进行连接<del>我觉得还是很简单的，就是复杂度有点高。。。。</del><br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* root,<span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//cout &lt;&lt; root -&gt; val &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">if</span>(val &gt; root -&gt; val)</span><br><span class="line">           &#123;</span><br><span class="line">            <span class="keyword">if</span>(root -&gt; right == <span class="literal">nullptr</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                root -&gt; right = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            dfs(root -&gt; right,val);</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">if</span>(root -&gt; left == <span class="literal">nullptr</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                root -&gt; left = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">                <span class="keyword">return</span> ;</span><br><span class="line">            &#125;</span><br><span class="line">            dfs(root -&gt; left,val);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">insertIntoBST</span><span class="params">(TreeNode* root, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">        dfs(root,val);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>二叉树</tag>
+        <tag>递归</tag>
       </tags>
   </entry>
   <entry>
@@ -328,151 +334,44 @@
       </tags>
   </entry>
   <entry>
-    <title>哈希表</title>
-    <url>/2020/09/22/%E5%93%88%E5%B8%8C%E8%A1%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在c++ STL中还有一种重要的数据结构，它虽然不在标准的stl库中，但是用途广泛速度奇快，这就是哈希表。</p>
+    <title>新博客的第一篇文章</title>
+    <url>/2020/07/06/%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>折腾了一周时间终于搭好了基于hexo的个人博客，使用了next主题 <del>（主要是可以白嫖github的域名和静态页面）</del><br>接下来博客还有很多需要完善的地方<del>（以及美化（逃））</del></p>
 <a id="more"></a>
-<p><a href="https://blog.csdn.net/u010025211/article/details/46653519" target="_blank" rel="noopener">参考链接</a><br>哈希表和map类似，也是提供一个关键字和一个数据存储，并且一一对应，但是与map不同的是，map的底层实现是依靠<a href="/2020/09/15/%E7%BA%A2%E9%BB%91%E6%A0%91/" title="红黑树">红黑树</a>。</p>
-<p>既然提到了红黑树，那就一定要把红黑树和哈希表进行一下对比：</p>
+<p><strong>预计功能有：</strong></p>
 <ul>
-<li>时间复杂度上，哈希表的速度要远超红黑树，尤其数据量越大越明显，哈希表为O(1)常数级，而红黑树为O(logn)，但是极端情况下哈希表可能会到O(n)，反而不如红黑树</li>
-<li>空间复杂度上，红黑树为树形结构，数据存在每个节点中，而例如map只储存节点的指针关系，但是哈希表为先申请一大块内存，将每一个数据和key存入一个个桶中，所以如果对空间要求较高，优先使用红黑树</li>
-<li>其他方面，以哈希表为底层结构的stl容器，在插入删除操作后，它所对应的迭代器不会发生变化（上一条中已经说过了，这些容器只是储存指针的位置，增删也只是调整指针，在内存中块内存并没有发生改变，所以迭代器继续有效），而哈希表是利用桶，每次插入需要加入一个新的桶，或将已存在的桶转移扩大，操作内存可能会导致迭代器失效。（如果对哈希表的其中一个桶进行erase（擦除操作），是将此桶对应的映射擦除，而不影响其他桶的迭代器。）</li>
+<li>阅读量统计</li>
+<li>评论区</li>
+<li>以及美化 and so on…</li>
 </ul>
-<p>在我的理解中，哈希表是类似vector/数组的一段连续的内存，所以可以通过直接访问“下标”的方式来访问我们需要的value（下标即为key值，但实际储存时为哈希值，下文会说），这样直接访问的方式当然要比平衡二叉树的查找要快得多。</p>
-<p>在我们向哈希表中插入元素的时候，首先获取key值，然后通过哈希函数得到哈希值，再通过哈希值获得“桶号”，最后将key和value存入桶中；取出元素时则进行逆向操作，获取key，得到哈希值，得到桶号，比较key值是否相等，相等则得到对应的value，否则返回false。而只要是常见的内建数据类型，我们就可以直接使用自带的hash模板。<br>附c++ hash函数模板源码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hash</span>&lt;int&gt; &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">size_t</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> __x)</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> __x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hash</span>&lt;char*&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;const char*&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;char&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned char&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;signed char&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;short&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned short&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;int&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned int&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;long&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned long&gt;</span></span><br></pre></td></tr></table></figure>
-
+<p>希望自己能坚持下来，将写博客这个好习惯保持下去</p>
 ]]></content>
       <categories>
-        <category>学习笔记</category>
+        <category>随笔</category>
       </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>哈希表</tag>
-      </tags>
   </entry>
   <entry>
-    <title>搜索功能</title>
-    <url>/2020/09/22/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一直觉得blog的搜索功能很有用<del>装x</del>，方便我们来查找自己曾经写过的东西，所以今天按照大佬的方法给博客加了个搜索的功能，操作很简单，有手就行<del>没有也行</del></p>
-<a id="more"></a>
-<p><a href="https://blog.csdn.net/lijing742180/article/details/87970909" target="_blank" rel="noopener">参考链接</a></p>
-<ul>
-<li>首先切换到博客目录下，安装hexo的搜索插件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
-安装后会自动创建一个search.xml，我个人理解是相当于创建了索引（因为是纯静态页面嘛）</li>
-<li>然后修改hexo的配置文件_config.yml（注意不是主题的），添加如下内容：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Search </span><br><span class="line">search:</span><br><span class="line">  path: .&#x2F;public&#x2F;search.xml &#x2F;&#x2F;索引的位置</span><br><span class="line">  field: post &#x2F;&#x2F;搜索的范围，默认post，也可以手动设置all、page等等</span><br><span class="line">  format: html &#x2F;&#x2F;搜索的类型</span><br><span class="line">  limit: 10000 &#x2F;&#x2F;限制搜索的条目数</span><br></pre></td></tr></table></figure></li>
-<li>接下来只要配置好主题相关内容就可以了，因为我用的是next主题，默认就有搜索功能的支持，所以我只要选择打开这个功能就可以了。在next的_config.xml文件中搜索local_search，然后做如下修改：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true &#x2F;&#x2F;开启搜索功能</span><br><span class="line">  trigger: auto</span><br><span class="line">  top_n_per_article: 1</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>本地搜索</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Leetcode#637</title>
-    <url>/2020/09/12/Leetcode-637/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Leetcode-637二叉树的层平均值"><a href="#Leetcode-637二叉树的层平均值" class="headerlink" title="Leetcode#637二叉树的层平均值"></a>Leetcode#637二叉树的层平均值</h2><a id="more"></a>
-<p>水题，直接一个裸的广搜，按层遍历树的每一层即可</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="built_in">queue</span>&lt;TreeNode*&gt;qu;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;ans;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; <span class="title">averageOfLevels</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        qu.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!qu.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt = qu.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">double</span> temp = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; cnt ;i ++)</span><br><span class="line">            &#123;</span><br><span class="line">                temp += qu.front() -&gt; val;</span><br><span class="line">                <span class="keyword">if</span>(qu.front() -&gt; left != <span class="literal">NULL</span>)</span><br><span class="line">                    qu.push(qu.front() -&gt; left);</span><br><span class="line">                <span class="keyword">if</span>(qu.front() -&gt; right != <span class="literal">NULL</span>)</span><br><span class="line">                    qu.push(qu.front() -&gt; right);</span><br><span class="line">                qu.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            ans.push_back(temp/cnt);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><del>尝试用auto声明居然出现了误差，不知道为什么会自动成int类型，果然还是菜啊</del></p>
-]]></content>
+    <title>LeetCode#94</title>
+    <url>/2020/09/14/LeetCode-94/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-94二叉树的中序遍历"><a href="#LeetCode-94二叉树的中序遍历" class="headerlink" title="LeetCode#94二叉树的中序遍历"></a>LeetCode#94二叉树的中序遍历</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">题目链接</a></p>
+<p>二叉树的中序遍历，首先我们来看一下二叉树的前序（VLR）、中序（LDR）、后序（LRD）遍历的定义:</p>
+<p>前序遍历：先访问根节点，再遍历左子树，最后遍历右子树</p>
+<p>中序遍历：先遍历左子树，再访问根节点，最后遍历右子树</p>
+<p>后序遍历：先遍历左子树，再访问右子树，最后访问根节点</p>
+<p>有了三种遍历的定义，我们在举个例子具体看一下：<br><img src="/images/erchashu.png" alt=""></p>
+<p>先序遍历：123564</p>
+<p>中序遍历：153624</p>
+<p>后续遍历：563421</p>
+<p>结合这个具体的例子是不是就理解了呢？</p>
+<p>理解了中序遍历，代码就很好理解了，先判断当前节点是否右左子树，如果有则继续遍历，没有则直接将当前节点存入答案，最后再遍历右子树。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;ans;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node)</span></span></span><br><span class="line"><span class="function">    </span>&#123;<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(node -&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">            dfs(node -&gt; left);</span><br><span class="line">        ans.push_back(node -&gt; val);</span><br><span class="line">        <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">            dfs(node -&gt; right); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        dfs(root);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
         <tag>c++</tag>
-        <tag>dfs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql远程连接</title>
-    <url>/2020/07/14/mysql%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>今天记录一个困扰了我很久，每次都是莫名其妙发生又莫名其妙解决的问题：当使用navicat连接远程数据库时无法连接（错误代码2003或其他）问题的简单分析和解决方案。</p>
-<a id="more"></a>
-<p>当远程连接mysql数据库连接失败时，一般分为几种情况：</p>
-<ul>
-<li>未授予远程账号使用root连接的权限</li>
-<li>在配置文件中限定了只有本地IP可以连接</li>
-<li>Linux系统防火墙对3306端口（或其他指定端口）进行了限制<h2 id="授予远程账号访问权限"><a href="#授予远程账号访问权限" class="headerlink" title="授予远程账号访问权限"></a>授予远程账号访问权限</h2>在终端登陆mysql，选择mysql数据库之后查询user表中的host信息<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; select user,password,host from user;</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| user | password                                  | host           |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | localhost      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | 127.0.0.1      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | ::1            |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
-可以看到当用户为root时，只有本地账户可以进行连接，我们只需要把localhost修改为%即可。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">update user set host&#x3D;&quot;%&quot; where host&#x3D;&quot;localhost&quot;;</span><br></pre></td></tr></table></figure>
-<h2 id="解除配置文件只允许本地连接的限制"><a href="#解除配置文件只允许本地连接的限制" class="headerlink" title="解除配置文件只允许本地连接的限制"></a>解除配置文件只允许本地连接的限制</h2>找到my.conf(一般在/etc/my.conf或/etc/mysql/my.conf，版本不同会造成差异)，将下面的代码注释掉。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bind-address &#x3D; 127.0.0.1</span><br></pre></td></tr></table></figure>
-<h2 id="解除linux对端口的限制"><a href="#解除linux对端口的限制" class="headerlink" title="解除linux对端口的限制"></a>解除linux对端口的限制</h2>前面两个问题其实大部分时候都会注意到，这最后一个可真是困扰了我好久<br><del>（菜）</del>。</li>
-</ul>
-<p>首先是iptables，经过查阅资料我发现tables本身就是linux内核的一部分所以无法删除<br><del>（我还天真的想把它删了）</del><br>所以我们要做的是直接解除iptables对所有端口的限制：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">iptables -P INPUT ACCEPT</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line">iptables -P FORWARD ACCEPT</span><br><span class="line">iptables -F</span><br></pre></td></tr></table></figure>
-<p>然后如果开启了ufw，也需要关闭：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw disable</span><br></pre></td></tr></table></figure>
-
-<p>最后不要忘记重启MySQL服务。</p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-        <tag>Navicat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode#404</title>
-    <url>/2020/09/19/LeetCode-404/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-404左叶子子之和"><a href="#LeetCode-404左叶子子之和" class="headerlink" title="LeetCode#404左叶子子之和"></a>LeetCode#404左叶子子之和</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/sum-of-left-leaves/" target="_blank" rel="noopener">题目链接</a><br>深搜遍历每个节点，判断一下是否为左叶子节点即可，没啥好说的，我是用一个标记flag来记录是否为左节点的，如果不是则直接继续遍历<br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node,<span class="keyword">long</span> <span class="keyword">long</span> &amp;ans,<span class="keyword">int</span> flag)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left == <span class="literal">nullptr</span> &amp;&amp;  node -&gt; right == <span class="literal">nullptr</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ans+=node -&gt; val;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;left,ans,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;right,ans,<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;left,ans,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;right,ans,<span class="number">0</span>);            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sumOfLeftLeaves</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        dfs(root,ans,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>深搜</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>红黑树</title>
-    <url>/2020/09/15/%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近学习数据结构和c++的STL，了解到了map、set的实现都是依靠红黑树，依靠红黑树的这两个容器都有查找速度快，插入删除元素快的特点，下面记录一下红黑树的原理及实现。</p>
-<a id="more"></a>
-<p><a href="https://www.jianshu.com/p/e136ec79235c" target="_blank" rel="noopener">参考链接</a></p>
-<p>红黑树本质上也是一个平衡二叉树，但是它并不是严格意义上的完全平衡二叉树（AVL），而是黑色节点平衡二叉树。</p>
-<h3 id="红黑树的几个性质："><a href="#红黑树的几个性质：" class="headerlink" title="红黑树的几个性质："></a>红黑树的几个性质：</h3><ul>
-<li>树中只有红色或黑色的节点（每个节点不是红色就是黑色）</li>
-<li>根节点是黑色节点</li>
-<li>每个叶子节点（NIL）是黑色节点（NIL可以看作是空的叶子节点）</li>
-<li>每个红色节点的两个子节点都是黑色</li>
-<li>任意节点到每个叶子节点的路径都包含相同数量的黑节点</li>
-</ul>
-<p>红黑树的查找和普通的二叉树一样，但又因为红黑树总能保证黑色平衡，时间复杂度就为O(2logn)，所以查找的速度很快。</p>
-<p>红黑树的插入、删除速度也很快。在c++中，由红黑树构成的数据结构（map、set、multimap、multiset）在插入或者删除操作时不需要操作内存，当插入或删除操作后，它对应的迭代器（itrator）也不需要重新声明，究其原因是因为当进行插入/删除操作时，本质上只是指针的指向进行了改变，而容器内储存的仅仅是节点的关系，而不是真正的数据。新节点也只是加了一个额外的指针进行指向，所以迭代器也可以正常继续使用。</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-        <tag>红黑树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>添加阅读次数</title>
-    <url>/2020/07/07/%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E6%AC%A1%E6%95%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>博客添加阅读次数是一件很有用<del>装逼</del>的事情，以下均是基于GitHub page+hexo+next主题进行配置。</p>
-<a id="more"></a>
-<p>首先需要用到leancloud的服务，首先我们需要注册一个<a href="https://leancloud.cn/dashboard/login.html" target="_blank" rel="noopener">leancloud</a>，登陆后创建一个开发版的应用,这里面应用名称可随意填写 <del>（反正也可以改）</del>。<br><img src="/images/1.png" alt=""></p>
-<p>然后在存储中创建一个名为Conter的新class（注意权限都为所有用户）<br><img src="/images/2.png" alt=""></p>
-<p>然后在设置-安全中心-Web安全域名中填入自己博客的域名，以防被ban导致无法使用，然后进入应用Keys，将AppID和AppKey都复制下来一会会用到。</p>
-<p>接下来是本地的配置，由于next默认是支持这个功能的，所以我们只需要开启就好了，在next主题根目录下找到_config.yml文件，按照如图所示进行修改（appid和keyid填你自己的）<br><img src="/images/3.png" alt=""><br>注意一定要把security改为false，否则会提示你计数不可用（当然也有其他办法只不过我不太会233）<br>编译，上传，发现已经搞好了！</p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>阅读次数</tag>
-        <tag>leancloud</tag>
+        <tag>二叉树</tag>
       </tags>
   </entry>
   <entry>
@@ -507,8 +406,8 @@
         <category>hexo</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
         <tag>美化</tag>
+        <tag>hexo</tag>
         <tag>点击效果</tag>
       </tags>
   </entry>
@@ -523,8 +422,8 @@
 <p>开启评论之后，会在每个页面都显示评论，如果我们不想让它显示评论呢？（比如标签页和分类页）</p>
 <p>我们就需要在这篇文章的头部部分加上：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">comment:false</span><br></pre></td></tr></table></figure>
-<p><img src="/images/5.png" alt=""><br>作为一个强迫症，在添加评论数后，头部没有做到全部汉化，评论数还显示valine是我难以忍受的，这是因为next默认支持多种评论区，所以默认显示当前开启了何种评论所以我们可以自己编译一下。在next文件夹中找到language文件夹，找到post部分，按照上面的样式添加一条：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">commet.valine :评论数&#x2F;&#x2F;注意一定要有个空格</span><br></pre></td></tr></table></figure>
+<p><img src="/images/5.png" alt=""><br>作为一个强迫症，在添加评论数后，头部没有做到全部汉化，评论数还显示valine是我难以忍受的，这是因为next默认支持多种评论区，所以默认显示当前开启了何种评论所以我们可以自己编译一下。在next文件夹中找到language文件夹，找到你当前已选择语言的yml文件对应的post部分（我用的中文，所以就在zh_CN.yml文件里），按照上面的样式添加一条：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">comments.valine: 评论数&#x2F;&#x2F;注意一定要有个空格</span><br></pre></td></tr></table></figure>
 <p>效果如图：<br><img src="/images/6.png" alt=""></p>
 ]]></content>
       <categories>
@@ -537,17 +436,106 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode#701</title>
-    <url>/2020/09/30/LeetCode-701/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-701二叉搜索树中的插入操作"><a href="#LeetCode-701二叉搜索树中的插入操作" class="headerlink" title="LeetCode#701二叉搜索树中的插入操作"></a>LeetCode#701二叉搜索树中的插入操作</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/" target="_blank" rel="noopener">链接</a><br>因为是二叉搜索树，所以遍历起来十分的简单，我是使用递归实现的，如果当前节点的值大于给定值，就找右子树，反之找左子树（题目说了不包含重复的情况），如果找到空节点就，就把给定值新建一个节点进行连接<del>我觉得还是很简单的，就是复杂度有点高。。。。</del><br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* root,<span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//cout &lt;&lt; root -&gt; val &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">if</span>(val &gt; root -&gt; val)</span><br><span class="line">           &#123;</span><br><span class="line">            <span class="keyword">if</span>(root -&gt; right == <span class="literal">nullptr</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                root -&gt; right = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            dfs(root -&gt; right,val);</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">if</span>(root -&gt; left == <span class="literal">nullptr</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                root -&gt; left = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">                <span class="keyword">return</span> ;</span><br><span class="line">            &#125;</span><br><span class="line">            dfs(root -&gt; left,val);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">insertIntoBST</span><span class="params">(TreeNode* root, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">        dfs(root,val);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>添加阅读次数</title>
+    <url>/2020/07/07/%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E6%AC%A1%E6%95%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>博客添加阅读次数是一件很有用<del>装逼</del>的事情，以下均是基于GitHub page+hexo+next主题进行配置。</p>
+<a id="more"></a>
+<p>首先需要用到leancloud的服务，首先我们需要注册一个<a href="https://leancloud.cn/dashboard/login.html" target="_blank" rel="noopener">leancloud</a>，登陆后创建一个开发版的应用,这里面应用名称可随意填写 <del>（反正也可以改）</del>。<br><img src="/images/1.png" alt=""></p>
+<p>然后在存储中创建一个名为Conter的新class（注意权限都为所有用户）<br><img src="/images/2.png" alt=""></p>
+<p>然后在设置-安全中心-Web安全域名中填入自己博客的域名，以防被ban导致无法使用，然后进入应用Keys，将AppID和AppKey都复制下来一会会用到。</p>
+<p>接下来是本地的配置，由于next默认是支持这个功能的，所以我们只需要开启就好了，在next主题根目录下找到_config.yml文件，按照如图所示进行修改（appid和keyid填你自己的）<br><img src="/images/3.png" alt=""><br>注意一定要把security改为false，否则会提示你计数不可用（当然也有其他办法只不过我不太会233）<br>编译，上传，发现已经搞好了！</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>阅读次数</tag>
+        <tag>leancloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搜索功能</title>
+    <url>/2020/09/22/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一直觉得blog的搜索功能很有用<del>装x</del>，方便我们来查找自己曾经写过的东西，所以今天按照大佬的方法给博客加了个搜索的功能，操作很简单，有手就行<del>没有也行</del></p>
+<a id="more"></a>
+<p><a href="https://blog.csdn.net/lijing742180/article/details/87970909" target="_blank" rel="noopener">参考链接</a></p>
+<ul>
+<li>首先切换到博客目录下，安装hexo的搜索插件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
+安装后会自动创建一个search.xml，我个人理解是相当于创建了索引（因为是纯静态页面嘛）</li>
+<li>然后修改hexo的配置文件_config.yml（注意不是主题的），添加如下内容：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Search </span><br><span class="line">search:</span><br><span class="line">  path: .&#x2F;public&#x2F;search.xml &#x2F;&#x2F;索引的位置</span><br><span class="line">  field: post &#x2F;&#x2F;搜索的范围，默认post，也可以手动设置all、page等等</span><br><span class="line">  format: html &#x2F;&#x2F;搜索的类型</span><br><span class="line">  limit: 10000 &#x2F;&#x2F;限制搜索的条目数</span><br></pre></td></tr></table></figure></li>
+<li>接下来只要配置好主题相关内容就可以了，因为我用的是next主题，默认就有搜索功能的支持，所以我只要选择打开这个功能就可以了。在next的_config.xml文件中搜索local_search，然后做如下修改：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true &#x2F;&#x2F;开启搜索功能</span><br><span class="line">  trigger: auto</span><br><span class="line">  top_n_per_article: 1</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>本地搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>哈希表</title>
+    <url>/2020/09/22/%E5%93%88%E5%B8%8C%E8%A1%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>在c++ STL中还有一种重要的数据结构，它虽然不在标准的stl库中，但是用途广泛速度奇快，这就是哈希表。</p>
+<a id="more"></a>
+<p><a href="https://blog.csdn.net/u010025211/article/details/46653519" target="_blank" rel="noopener">参考链接</a><br>哈希表和map类似，也是提供一个关键字和一个数据存储，并且一一对应，但是与map不同的是，map的底层实现是依靠<a href="/2020/09/15/%E7%BA%A2%E9%BB%91%E6%A0%91/" title="红黑树">红黑树</a>。</p>
+<p>既然提到了红黑树，那就一定要把红黑树和哈希表进行一下对比：</p>
+<ul>
+<li>时间复杂度上，哈希表的速度要远超红黑树，尤其数据量越大越明显，哈希表为O(1)常数级，而红黑树为O(logn)，但是极端情况下哈希表可能会到O(n)，反而不如红黑树</li>
+<li>空间复杂度上，红黑树为树形结构，数据存在每个节点中，而例如map只储存节点的指针关系，但是哈希表为先申请一大块内存，将每一个数据和key存入一个个桶中，所以如果对空间要求较高，优先使用红黑树</li>
+<li>其他方面，以哈希表为底层结构的stl容器，在插入删除操作后，它所对应的迭代器不会发生变化（上一条中已经说过了，这些容器只是储存指针的位置，增删也只是调整指针，在内存中块内存并没有发生改变，所以迭代器继续有效），而哈希表是利用桶，每次插入需要加入一个新的桶，或将已存在的桶转移扩大，操作内存可能会导致迭代器失效。（如果对哈希表的其中一个桶进行erase（擦除操作），是将此桶对应的映射擦除，而不影响其他桶的迭代器。）</li>
+</ul>
+<p>在我的理解中，哈希表是类似vector/数组的一段连续的内存，所以可以通过直接访问“下标”的方式来访问我们需要的value（下标即为key值，但实际储存时为哈希值，下文会说），这样直接访问的方式当然要比平衡二叉树的查找要快得多。</p>
+<p>在我们向哈希表中插入元素的时候，首先获取key值，然后通过哈希函数得到哈希值，再通过哈希值获得“桶号”，最后将key和value存入桶中；取出元素时则进行逆向操作，获取key，得到哈希值，得到桶号，比较key值是否相等，相等则得到对应的value，否则返回false。而只要是常见的内建数据类型，我们就可以直接使用自带的hash模板。<br>附c++ hash函数模板源码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hash</span>&lt;int&gt; &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">size_t</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> __x)</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> __x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hash</span>&lt;char*&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;const char*&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;char&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned char&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;signed char&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;short&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned short&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;int&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned int&gt;</span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;long&gt; </span></span><br><span class="line"><span class="class"><span class="title">struct</span> <span class="title">hash</span>&lt;unsigned long&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>哈希表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>红黑树</title>
+    <url>/2020/09/15/%E7%BA%A2%E9%BB%91%E6%A0%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近学习数据结构和c++的STL，了解到了map、set的实现都是依靠红黑树，依靠红黑树的这两个容器都有查找速度快，插入删除元素快的特点，下面记录一下红黑树的原理及实现。</p>
+<a id="more"></a>
+<p><a href="https://www.jianshu.com/p/e136ec79235c" target="_blank" rel="noopener">参考链接</a></p>
+<p>红黑树本质上也是一个平衡二叉树，但是它并不是严格意义上的完全平衡二叉树（AVL），而是黑色节点平衡二叉树。</p>
+<h3 id="红黑树的几个性质："><a href="#红黑树的几个性质：" class="headerlink" title="红黑树的几个性质："></a>红黑树的几个性质：</h3><ul>
+<li>树中只有红色或黑色的节点（每个节点不是红色就是黑色）</li>
+<li>根节点是黑色节点</li>
+<li>每个叶子节点（NIL）是黑色节点（NIL可以看作是空的叶子节点）</li>
+<li>每个红色节点的两个子节点都是黑色</li>
+<li>任意节点到每个叶子节点的路径都包含相同数量的黑节点</li>
+</ul>
+<p>红黑树的查找和普通的二叉树一样，但又因为红黑树总能保证黑色平衡，时间复杂度就为O(2logn)，所以查找的速度很快。</p>
+<p>红黑树的插入、删除速度也很快。在c++中，由红黑树构成的数据结构（map、set、multimap、multiset）在插入或者删除操作时不需要操作内存，当插入或删除操作后，它对应的迭代器（itrator）也不需要重新声明，究其原因是因为当进行插入/删除操作时，本质上只是指针的指向进行了改变，而容器内储存的仅仅是节点的关系，而不是真正的数据。新节点也只是加了一个额外的指针进行指向，所以迭代器也可以正常继续使用。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+        <tag>红黑树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#404</title>
+    <url>/2020/09/19/LeetCode-404/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-404左叶子子之和"><a href="#LeetCode-404左叶子子之和" class="headerlink" title="LeetCode#404左叶子子之和"></a>LeetCode#404左叶子子之和</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/sum-of-left-leaves/" target="_blank" rel="noopener">题目链接</a><br>深搜遍历每个节点，判断一下是否为左叶子节点即可，没啥好说的，我是用一个标记flag来记录是否为左节点的，如果不是则直接继续遍历<br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node,<span class="keyword">long</span> <span class="keyword">long</span> &amp;ans,<span class="keyword">int</span> flag)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left == <span class="literal">nullptr</span> &amp;&amp;  node -&gt; right == <span class="literal">nullptr</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    ans+=node -&gt; val;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;left,ans,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;right,ans,<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; left != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;left,ans,<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">                dfs(node-&gt;right,ans,<span class="number">0</span>);            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">sumOfLeftLeaves</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        dfs(root,ans,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
-        <tag>二叉树</tag>
-        <tag>递归</tag>
+        <tag>c++</tag>
+        <tag>深搜</tag>
       </tags>
   </entry>
   <entry>
@@ -572,20 +560,32 @@ enjoy it~</li>
       </tags>
   </entry>
   <entry>
-    <title>新博客的第一篇文章</title>
-    <url>/2020/07/06/%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>折腾了一周时间终于搭好了基于hexo的个人博客，使用了next主题 <del>（主要是可以白嫖github的域名和静态页面）</del><br>接下来博客还有很多需要完善的地方<del>（以及美化（逃））</del></p>
+    <title>mysql远程连接</title>
+    <url>/2020/07/14/mysql%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>今天记录一个困扰了我很久，每次都是莫名其妙发生又莫名其妙解决的问题：当使用navicat连接远程数据库时无法连接（错误代码2003或其他）问题的简单分析和解决方案。</p>
 <a id="more"></a>
-<p><strong>预计功能有：</strong></p>
+<p>当远程连接mysql数据库连接失败时，一般分为几种情况：</p>
 <ul>
-<li>阅读量统计</li>
-<li>评论区</li>
-<li>以及美化 and so on…</li>
+<li>未授予远程账号使用root连接的权限</li>
+<li>在配置文件中限定了只有本地IP可以连接</li>
+<li>Linux系统防火墙对3306端口（或其他指定端口）进行了限制<h2 id="授予远程账号访问权限"><a href="#授予远程账号访问权限" class="headerlink" title="授予远程账号访问权限"></a>授予远程账号访问权限</h2>在终端登陆mysql，选择mysql数据库之后查询user表中的host信息<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; select user,password,host from user;</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| user | password                                  | host           |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | localhost      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | 127.0.0.1      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | ::1            |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
+可以看到当用户为root时，只有本地账户可以进行连接，我们只需要把localhost修改为%即可。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">update user set host&#x3D;&quot;%&quot; where host&#x3D;&quot;localhost&quot;;</span><br></pre></td></tr></table></figure>
+<h2 id="解除配置文件只允许本地连接的限制"><a href="#解除配置文件只允许本地连接的限制" class="headerlink" title="解除配置文件只允许本地连接的限制"></a>解除配置文件只允许本地连接的限制</h2>找到my.conf(一般在/etc/my.conf或/etc/mysql/my.conf，版本不同会造成差异)，将下面的代码注释掉。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bind-address &#x3D; 127.0.0.1</span><br></pre></td></tr></table></figure>
+<h2 id="解除linux对端口的限制"><a href="#解除linux对端口的限制" class="headerlink" title="解除linux对端口的限制"></a>解除linux对端口的限制</h2>前面两个问题其实大部分时候都会注意到，这最后一个可真是困扰了我好久<br><del>（菜）</del>。</li>
 </ul>
-<p>希望自己能坚持下来，将写博客这个好习惯保持下去</p>
+<p>首先是iptables，经过查阅资料我发现tables本身就是linux内核的一部分所以无法删除<br><del>（我还天真的想把它删了）</del><br>所以我们要做的是直接解除iptables对所有端口的限制：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">iptables -P INPUT ACCEPT</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line">iptables -P FORWARD ACCEPT</span><br><span class="line">iptables -F</span><br></pre></td></tr></table></figure>
+<p>然后如果开启了ufw，也需要关闭：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw disable</span><br></pre></td></tr></table></figure>
+
+<p>最后不要忘记重启MySQL服务。</p>
 ]]></content>
       <categories>
-        <category>随笔</category>
+        <category>mysql</category>
       </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>Navicat</tag>
+      </tags>
   </entry>
 </search>
