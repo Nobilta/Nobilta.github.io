@@ -35,7 +35,7 @@
 <meta property="og:description" content="LeetCode#75颜色分类">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-07T08:26:35.000Z">
-<meta property="article:modified_time" content="2020-10-07T08:45:57.529Z">
+<meta property="article:modified_time" content="2020-10-07T09:59:12.354Z">
 <meta property="article:author" content="只会python的菜鸡">
 <meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary">
@@ -230,7 +230,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-10-07 16:26:35 / 修改时间：16:45:57" itemprop="dateCreated datePublished" datetime="2020-10-07T16:26:35+08:00">2020-10-07</time>
+              <time title="创建时间：2020-10-07 16:26:35 / 修改时间：17:59:12" itemprop="dateCreated datePublished" datetime="2020-10-07T16:26:35+08:00">2020-10-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -288,8 +288,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>LeetCode#75颜色分类</p>
-<a id="more"></a>
+        <h2 id="LeetCode-75颜色分类"><a href="#LeetCode-75颜色分类" class="headerlink" title="LeetCode#75颜色分类"></a>LeetCode#75颜色分类</h2><a id="more"></a>
 <p><a href="https://leetcode-cn.com/problems/sort-colors/" target="_blank" rel="noopener">题目链接</a><br>刚看题的时候还以为是个简单的双层暴力循环（比如冒泡或者选择排序），但是题目要求说不能有额外的空间复杂度且只能遍历一次emmmmmmm，后来<del>想到了</del>双指针的写法，一个代表0，一个代表1，只要把0和1都挪到最前面，那剩下的自然就是2了。<br>具体做法是，一个指针指向应该放0的位置，一个指针指向应该放1的位置，如果在遍历过程中找到了0或者1，则和相应的指针进行交换，同时这个指针向前移动。思路很简单，但是中间有一些细节需要处理：如果在找到一个0的时候，这个位置上已经是确定的1的位置（即1的指针已经遍历过了），那么直接进行交换就会让当前这个已经确定位置的1产生错误。如果当前p0指针位置是1，我们可以先把需要交换的0交换到p0，再把这个1交换到p1。至于如何判断是否发生了这种情况，我们可以判断p1是否大于p0，如果大于则一定发生<del>（不明白在纸上划拉两下就懂了）</del><br>附代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> p0 = <span class="number">0</span>,p1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; length ; i ++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(p1 &gt; p0)</span><br><span class="line">                &#123;</span><br><span class="line">                    swap(nums[i],nums[p0]);</span><br><span class="line">                    swap(nums[i],nums[p1]);</span><br><span class="line">                    p0++;</span><br><span class="line">                    p1++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    swap(nums[i],nums[p0]);</span><br><span class="line">                    p0++;</span><br><span class="line">                    p1++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[i] == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                swap(nums[i],nums[p1]);</span><br><span class="line">                p1++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
     </div>
@@ -329,7 +328,10 @@
     <a href="/2020/10/06/LeetCode-18/" rel="prev" title="LeetCode#18">
       <i class="fa fa-chevron-left"></i> LeetCode#18
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/07/OJ%E5%86%85%E6%A0%B8%E6%96%B0%E5%9D%91/" rel="next" title="OJ内核新坑">
+      OJ内核新坑 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -389,6 +391,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode-75颜色分类"><span class="nav-number">1.</span> <span class="nav-text">LeetCode#75颜色分类</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -404,20 +407,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -490,13 +493,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">40k</span>
+    <span title="站点总字数">41k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">36 分钟</span>
+    <span title="站点阅读时长">37 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>

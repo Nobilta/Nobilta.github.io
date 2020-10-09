@@ -167,8 +167,7 @@
   <entry>
     <title>LeetCode#75</title>
     <url>/2020/10/07/LeetCode-75/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>LeetCode#75颜色分类</p>
-<a id="more"></a>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="LeetCode-75颜色分类"><a href="#LeetCode-75颜色分类" class="headerlink" title="LeetCode#75颜色分类"></a>LeetCode#75颜色分类</h2><a id="more"></a>
 <p><a href="https://leetcode-cn.com/problems/sort-colors/" target="_blank" rel="noopener">题目链接</a><br>刚看题的时候还以为是个简单的双层暴力循环（比如冒泡或者选择排序），但是题目要求说不能有额外的空间复杂度且只能遍历一次emmmmmmm，后来<del>想到了</del>双指针的写法，一个代表0，一个代表1，只要把0和1都挪到最前面，那剩下的自然就是2了。<br>具体做法是，一个指针指向应该放0的位置，一个指针指向应该放1的位置，如果在遍历过程中找到了0或者1，则和相应的指针进行交换，同时这个指针向前移动。思路很简单，但是中间有一些细节需要处理：如果在找到一个0的时候，这个位置上已经是确定的1的位置（即1的指针已经遍历过了），那么直接进行交换就会让当前这个已经确定位置的1产生错误。如果当前p0指针位置是1，我们可以先把需要交换的0交换到p0，再把这个1交换到p1。至于如何判断是否发生了这种情况，我们可以判断p1是否大于p0，如果大于则一定发生<del>（不明白在纸上划拉两下就懂了）</del><br>附代码：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">sortColors</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> p0 = <span class="number">0</span>,p1 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; length ; i ++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(p1 &gt; p0)</span><br><span class="line">                &#123;</span><br><span class="line">                    swap(nums[i],nums[p0]);</span><br><span class="line">                    swap(nums[i],nums[p1]);</span><br><span class="line">                    p0++;</span><br><span class="line">                    p1++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    swap(nums[i],nums[p0]);</span><br><span class="line">                    p0++;</span><br><span class="line">                    p1++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[i] == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                swap(nums[i],nums[p1]);</span><br><span class="line">                p1++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
@@ -600,6 +599,36 @@ enjoy it~</li>
       <tags>
         <tag>数据结构</tag>
         <tag>红黑树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#141</title>
+    <url>/2020/10/09/LeetCode-141/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>LeetCode#141环形链表</p>
+<a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">题目链接</a><br>一道链表问题，通俗来说就是判断一个链表中是否有环<del>力扣的翻译真绝了</del>，除了开辟额外，如使用哈希表等等，还有其他的方式吗？那为了不开辟额外的空间，我们需要引入一个新的指针方式：快慢指针。<br>顾名思义，快慢指针就是两个指针，一个跑的快，一个跑得慢，它是在链表中检测是否有环的一个重要方式，具体实现方式是：声明两个指针，接下来进行循环，快指针每次步进两下，慢指针每次步进一下，如果遇到空指针那么肯定是找到了链表结尾，没有环，而如果快指针最终追上了慢指针（两个指针相遇），那么就一定是在链表中存在环。具体原理可以使用严谨的数学公式进行推导…而使用的话，我们只需要类比在操场跑圈即可：如果都围着操场跑步，那么跑得快的同学总会有追上跑的慢的同学的时候（扣圈），但是如果在直道上，跑步速度不同的两个同学是永远不会相遇的。<br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head -&gt; next == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        ListNode* fast = head -&gt; next;<span class="comment">//快指针</span></span><br><span class="line">        ListNode* slow = head;<span class="comment">//慢指针</span></span><br><span class="line">        <span class="keyword">while</span>(fast != slow)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(fast -&gt; next == <span class="literal">nullptr</span> || fast -&gt; next -&gt; next == <span class="literal">nullptr</span> || slow -&gt; next == <span class="literal">nullptr</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            fast = fast -&gt; next -&gt; next;</span><br><span class="line">            slow = slow -&gt; next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OJ内核新坑</title>
+    <url>/2020/10/07/OJ%E5%86%85%E6%A0%B8%E6%96%B0%E5%9D%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近准备写一个oj的内核以提升自己对于c++网络编程的理解和认识<del>（菜</del>，顺便没准还能投入实际生产使用环境中<del>（在想peach</del>。<br>今天先记录一下关于调用子进程的一些代码：</p>
+<h2 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line">system();</span><br></pre></td></tr></table></figure>
+<p>system函数大家应该都用过吧，它的功能就是在终端中发出一个命令，也就是相当于直接在c文件中实现在终端的命令运行。<br>system的实质其实和exec类似，system（）和exec（）都可以执行进程外的命令，system是在原进程上开辟了一个新的进程，但是exec是用新进程（命令）覆盖了原有的进程；而system（）和exec（）都有能产生返回值，system的返回值并不影响原有进程，但是exec的返回值影响了原进程。<br>但是</p>
+]]></content>
+      <categories>
+        <category>OJ内核</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>oj内核</tag>
       </tags>
   </entry>
 </search>
