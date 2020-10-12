@@ -27,21 +27,21 @@
     var CONFIG = {"hostname":"nobilta.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
   </script>
 
-  <meta name="description" content="LeetCode#46、#47全排列">
+  <meta name="description" content="LeetCode#416分割等和子集">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode#46、#47">
-<meta property="og:url" content="https://nobilta.github.io/2020/09/18/LeetCode-46%E3%80%81-47/index.html">
+<meta property="og:title" content="LeetCode#416">
+<meta property="og:url" content="https://nobilta.github.io/2020/10/11/LeetCode-416/index.html">
 <meta property="og:site_name" content="Nobilta&#39;s Blog">
-<meta property="og:description" content="LeetCode#46、#47全排列">
+<meta property="og:description" content="LeetCode#416分割等和子集">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-18T13:59:47.000Z">
-<meta property="article:modified_time" content="2020-09-28T05:03:49.025Z">
+<meta property="article:published_time" content="2020-10-11T12:38:00.000Z">
+<meta property="article:modified_time" content="2020-10-11T14:43:35.328Z">
 <meta property="article:author" content="只会python的菜鸡">
 <meta property="article:tag" content="c++">
-<meta property="article:tag" content="深搜">
+<meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://nobilta.github.io/2020/09/18/LeetCode-46%E3%80%81-47/">
+<link rel="canonical" href="https://nobilta.github.io/2020/10/11/LeetCode-416/">
 
 
 <script id="page-configurations">
@@ -54,7 +54,7 @@
   };
 </script>
 
-  <title>LeetCode#46、#47 | Nobilta's Blog</title>
+  <title>LeetCode#416 | Nobilta's Blog</title>
   
 
 
@@ -207,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://nobilta.github.io/2020/09/18/LeetCode-46%E3%80%81-47/">
+    <link itemprop="mainEntityOfPage" href="https://nobilta.github.io/2020/10/11/LeetCode-416/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/t.png">
@@ -220,7 +220,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LeetCode#46、#47
+          LeetCode#416
         </h1>
 
         <div class="post-meta">
@@ -229,16 +229,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-09-18 21:59:47" itemprop="dateCreated datePublished" datetime="2020-09-18T21:59:47+08:00">2020-09-18</time>
+              <time title="创建时间：2020-10-11 20:38:00 / 修改时间：22:43:35" itemprop="dateCreated datePublished" datetime="2020-10-11T20:38:00+08:00">2020-10-11</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-28 13:03:49" itemprop="dateModified" datetime="2020-09-28T13:03:49+08:00">2020-09-28</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -250,7 +244,7 @@
             </span>
 
           
-            <span id="/2020/09/18/LeetCode-46%E3%80%81-47/" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode#46、#47" title="阅读次数">
+            <span id="/2020/10/11/LeetCode-416/" class="post-meta-item leancloud_visitors" data-flag-title="LeetCode#416" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -265,8 +259,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/2020/09/18/LeetCode-46%E3%80%81-47/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/18/LeetCode-46%E3%80%81-47/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/10/11/LeetCode-416/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/11/LeetCode-416/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -276,7 +270,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -295,14 +289,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="LeetCode-46、-47全排列"><a href="#LeetCode-46、-47全排列" class="headerlink" title="LeetCode#46、#47全排列"></a>LeetCode#46、#47全排列</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/permutations/" target="_blank" rel="noopener">#46</a><br><a href="https://leetcode-cn.com/problems/permutations-ii/" target="_blank" rel="noopener">#47</a><br>今天的每日一题是一个全排列的升级版，突然发现忘记了全排列怎么写..<del>（菜）</del><br>就顺便做了46题，裸的全排列，记录一下思路。</p>
-<p>先看裸的全排列，我们直接想到的就是直接分别以每一个数为第一个数，遍历所有的可能性，但是因为我们不知道数组中有多少个数，所以我们就没法确定要写多少层的循环<del>也不是能写</del>所以这时候我们就需要用到深搜/广搜的想法，通过递归和回溯的方法来进行基本的遍历。</p>
-<p>为了避免重复，我们可以写一个标记数组来记录在当前的递归中这个数是否已经使用过，然后再回溯的时候再取消标记，当然对于这种简单的递归我们也可以省去一点空间复杂度，直接当遍历到第pos个数的时候和当前循环中的第i个数进行交换，以达到全排列的效果。其原理是我们可以把从0-pos的数认为是已经选择过的，pos+1-size()-1即为未选择过的</p>
-<p>#46代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;&amp;ans,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;nums,<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pos == nums.<span class="built_in">size</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            ans.push_back(nums);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = pos ; i &lt; nums.<span class="built_in">size</span>() ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            swap(nums[i],nums[pos]);</span><br><span class="line">            dfs(ans,nums,pos+<span class="number">1</span>);</span><br><span class="line">            swap(nums[i],nums[pos]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">permute</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;ans;</span><br><span class="line">        dfs(ans,nums,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>#47和#46的区别就是给定的数组中可能存在相同的数字，这样就导致我们如果照常进行全排列遍历就有可能出现重复的情况，我用的是一个比较笨的方法，直接使用set容器来进行去重（set毕竟是基于红黑树的操作，速度还是很快<del>（慢）</del><br>的，这样的结果就是时间复杂度和空间复杂度都很高，但是方便。还有一种方法，先使用sort对给定的数组进行排序，这样在递归回溯过程中就可以进行判断，配合标记数组，时间复杂度会快很多，但是由于我没写明白所以…建议去看题解<del>(逃)</del></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;flag,<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;&amp;ans,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;nums,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;temp,<span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pos == nums.<span class="built_in">size</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            ans.push_back(temp);</span><br><span class="line">            <span class="keyword">return</span>;        </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.<span class="built_in">size</span>() ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!flag[i])</span><br><span class="line">&#123;            flag[i] = <span class="number">1</span>;</span><br><span class="line">            temp.push_back(nums[i]);</span><br><span class="line">            dfs(flag,ans,nums,temp,pos+<span class="number">1</span>);</span><br><span class="line">            flag[i] = <span class="number">0</span>;</span><br><span class="line">            temp.pop_back();&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">permuteUnique</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;ans;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;flag(nums.<span class="built_in">size</span>(),<span class="number">0</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;temp;</span><br><span class="line">        dfs(flag,ans,nums,temp,<span class="number">0</span>);</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;s;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;::iterator it;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;ansr;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i  = <span class="number">0</span> ; i &lt; ans.<span class="built_in">size</span>() ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            s.insert(ans[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(it = s.<span class="built_in">begin</span>() ; it != s.<span class="built_in">end</span>() ;it++)</span><br><span class="line">        &#123;</span><br><span class="line">            ansr.push_back(*it);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ansr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <h2 id="LeetCode-416分割等和子集"><a href="#LeetCode-416分割等和子集" class="headerlink" title="LeetCode#416分割等和子集"></a>LeetCode#416分割等和子集</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/partition-equal-subset-sum/" target="_blank" rel="noopener">题目链接</a><br>题面很简单，意思就是给你个数组，然后问能否把这个数组分成加和相等的两个子数组，能的话返回true，否则返回false。首先能想到以下几种一定返回false：</p>
+<ul>
+<li>如果加和的sum为奇数则一定不能等分</li>
+<li>如果数组中的元素数量n&lt;2一定不能等分</li>
+<li>如果数组中有一个元素大于sum/2一定不能等分（为了降低时间复杂度，我们只需要判断数组中最大的数和sum/2的关系即可）<br>一开始我的想法是使用递归，遍历一遍整个数组，在每个数上判断一下选择或者不选择，但是直接tle了（这样递归的时间复杂度是2^n，我算成n^2了<del>人傻了</del>）<br>附一个递归的代码：<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums,<span class="keyword">int</span> pos,<span class="keyword">int</span> cnt,<span class="keyword">int</span>&amp; sum,<span class="keyword">bool</span>&amp; flag)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cnt == sum)</span><br><span class="line">        &#123;</span><br><span class="line">            flag = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt &gt; sum)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(pos == nums.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        dfs(nums,pos+<span class="number">1</span>,cnt+nums[pos],sum,flag);</span><br><span class="line">        dfs(nums,pos+<span class="number">1</span>,cnt,sum,flag);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canPartition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.<span class="built_in">size</span>() ; i++)</span><br><span class="line">            sum += nums[i];</span><br><span class="line">        <span class="keyword">if</span>(sum%<span class="number">2</span>==<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            sum/=<span class="number">2</span>;</span><br><span class="line">            dfs(nums,<span class="number">0</span>,<span class="number">0</span>,sum,flag);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+而正确的解法应该是使用动态规划，和我的想法差不多，也是判断每个数选择或者不选择，这样就可以把这道题模型化为01背包<del>还是菜没想到</del><br>dp[i][j]的含义是当使用数组中的前i个数，能否组合成j<br>初始化dp数组有几个情况：</li>
+<li>当i=0的时候，即只使用数组中第0个数，dp[0][num[0]]=true</li>
+<li>当j=0的时候，不选择任何数即可满足条件，所以dp[i][0]=true<br><del>dp[i][num[i]]=true也是成立的，但是好像没啥用</del><br>动态转移方程分为两种情况：</li>
+<li>选取num[i],dp[i][j] = dp[i-1][j-num[i]]</li>
+<li>不选取num[i],dp[i][j]=dp[i-1][j]</li>
+</ul>
+<p>附代码之前，再记录两个从来没用过的函数，accumulate()和*max_element()。<br>accumulate()函数在#include<numeric>头文件中，作用是累加求和，当然，你也可以自定义类型求和(数据处理)。accumulate带有三个形参：头两个形参指定要累加的元素范围，第三个形参则是累加的初值，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = accumulate(vec.<span class="built_in">begin</span>() , vec.<span class="built_in">end</span>() , <span class="number">42</span>);  <span class="comment">//求vector容器所有元素的累加和，累加初值设为42</span></span><br></pre></td></tr></table></figure>
+<p>还有种另类用法是将整形vector转换为字符串，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> sum = accumulate(v.<span class="built_in">begin</span>() , v.<span class="built_in">end</span>() , <span class="built_in">string</span>(<span class="string">" "</span>));</span><br></pre></td></tr></table></figure>
+
+<p><em>max_element()函数，返回容器中的最大值，相对应的，</em>min_element()函数返回容器/数组中的最小值，它们都在#include<algorithm>头文件中。</p>
+<p>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canPartition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> sum = accumulate(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> maxNum = *max_element(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">if</span> (sum &amp; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> target = sum / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (maxNum &gt; target) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">dp</span><span class="params">(n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(target + <span class="number">1</span>, <span class="number">0</span>))</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[<span class="number">0</span>][nums[<span class="number">0</span>]] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> num = nums[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= target; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt;= num) &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j] | dp[i - <span class="number">1</span>][j - num];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n - <span class="number">1</span>][target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -317,7 +323,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://nobilta.github.io/2020/09/18/LeetCode-46%E3%80%81-47/" title="LeetCode#46、#47">https://nobilta.github.io/2020/09/18/LeetCode-46、-47/</a>
+    <a href="https://nobilta.github.io/2020/10/11/LeetCode-416/" title="LeetCode#416">https://nobilta.github.io/2020/10/11/LeetCode-416/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -329,7 +335,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/c/" rel="tag"># c++</a>
-              <a href="/tags/%E6%B7%B1%E6%90%9C/" rel="tag"># 深搜</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
           </div>
 
         
@@ -338,12 +344,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/15/%E7%BA%A2%E9%BB%91%E6%A0%91/" rel="prev" title="红黑树">
-      <i class="fa fa-chevron-left"></i> 红黑树
+    <a href="/2020/10/11/VScode%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/" rel="prev" title="VScode配置c++环境">
+      <i class="fa fa-chevron-left"></i> VScode配置c++环境
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/19/LeetCode-404/" rel="next" title="LeetCode#404">
-      LeetCode#404 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/10/12/LeetCode-530/" rel="next" title="LeetCode#530">
+      LeetCode#530 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -404,7 +410,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode-46、-47全排列"><span class="nav-number">1.</span> <span class="nav-text">LeetCode#46、#47全排列</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode-416分割等和子集"><span class="nav-number">1.</span> <span class="nav-text">LeetCode#416分割等和子集</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
