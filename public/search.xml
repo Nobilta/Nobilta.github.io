@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>LeetCode#106</title>
-    <url>/2020/09/26/LeetCode-106/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-106从中序与后序遍历序列构造二叉树"><a href="#LeetCode-106从中序与后序遍历序列构造二叉树" class="headerlink" title="LeetCode#106从中序与后序遍历序列构造二叉树"></a>LeetCode#106从中序与后序遍历序列构造二叉树</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/" target="_blank" rel="noopener">题目链接</a><br>前序、中序、后序遍历是二叉树最常见的三种遍历方式，它们的详解和区别在这篇博客里写过。<br>我们想要通过中序和后序遍历来获取整个树形结构，大概过程是这样的：</p>
-<ul>
-<li>首先通过找规律我们能看出来，后序节点的最后一个即为根节点</li>
-<li>我们在中序中找到根节点，就可以根据中节点来将中序分为左右两部分，而这两部分左右分别是根节点的左右子树</li>
-<li>通过递归的方式，来不停缩小递归范围，最后找到左右子树皆为空的节点即为叶子节点<br>附代码（核心位置已经写了注释）：<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> post;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; postorder,<span class="keyword">int</span> pos1,<span class="keyword">int</span> pos2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cur;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = pos1 ; i &lt;= pos2 ; i ++)<span class="comment">//在限定中序搜索范围后，查找是否有当前的后序节点</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(inorder[i] == postorder[post])</span><br><span class="line">            &#123;</span><br><span class="line">                cur = i;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="literal">false</span>)<span class="comment">//如果没找到当前后续节点，则该后序节点不在当前子树中</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        TreeNode* node = <span class="keyword">new</span> TreeNode(postorder[post]);<span class="comment">//找到了之后返回当前节点</span></span><br><span class="line">        post--;<span class="comment">//找到后继续搜索下一个后序节点</span></span><br><span class="line">        node -&gt; right = dfs(inorder,postorder,cur + <span class="number">1</span>,pos2);</span><br><span class="line">        node -&gt; left = dfs(inorder,postorder,pos1,cur - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; postorder)</span> </span>&#123;    </span><br><span class="line">        post = inorder.<span class="built_in">size</span>()<span class="number">-1</span>;<span class="comment">//指向后序节点的指针，初始化为后序的最后一个节点</span></span><br><span class="line">        <span class="keyword">return</span> dfs(inorder,postorder,<span class="number">0</span>,inorder.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
+    <title>LeetCode#141</title>
+    <url>/2020/10/09/LeetCode-141/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-141环形链表"><a href="#LeetCode-141环形链表" class="headerlink" title="LeetCode#141环形链表"></a>LeetCode#141环形链表</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">题目链接</a><br>一道链表问题，通俗来说就是判断一个链表中是否有环<del>力扣的翻译真绝了</del>，除了开辟额外，如使用哈希表等等，还有其他的方式吗？那为了不开辟额外的空间，我们需要引入一个新的指针方式：快慢指针。<br>顾名思义，快慢指针就是两个指针，一个跑的快，一个跑得慢，它是在链表中检测是否有环的一个重要方式，具体实现方式是：声明两个指针，接下来进行循环，快指针每次步进两下，慢指针每次步进一下，如果遇到空指针那么肯定是找到了链表结尾，没有环，而如果快指针最终追上了慢指针（两个指针相遇），那么就一定是在链表中存在环。具体原理可以使用严谨的数学公式进行推导…而使用的话，我们只需要类比在操场跑圈即可：如果都围着操场跑步，那么跑得快的同学总会有追上跑的慢的同学的时候（扣圈），但是如果在直道上，跑步速度不同的两个同学是永远不会相遇的。<br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head -&gt; next == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        ListNode* fast = head -&gt; next;<span class="comment">//快指针</span></span><br><span class="line">        ListNode* slow = head;<span class="comment">//慢指针</span></span><br><span class="line">        <span class="keyword">while</span>(fast != slow)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(fast -&gt; next == <span class="literal">nullptr</span> || fast -&gt; next -&gt; next == <span class="literal">nullptr</span> || slow -&gt; next == <span class="literal">nullptr</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            fast = fast -&gt; next -&gt; next;</span><br><span class="line">            slow = slow -&gt; next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
         <tag>c++</tag>
-        <tag>题解</tag>
-        <tag>二叉树</tag>
+        <tag>链表</tag>
       </tags>
   </entry>
   <entry>
@@ -37,6 +31,19 @@
       </tags>
   </entry>
   <entry>
+    <title>LeetCode#18</title>
+    <url>/2020/10/06/LeetCode-18/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-18四数之和"><a href="#LeetCode-18四数之和" class="headerlink" title="LeetCode#18四数之和"></a>LeetCode#18四数之和</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/4sum/" target="_blank" rel="noopener">题目链接</a><br>其实这道题本质上就是一个四层循环判断所有可能性…还以为题解有什么高深的算法呢<del>(逃</del><br>为了避免有重复的结果出现，我们首先需要进行排序，然后如果是相同的数看作一种情况，为了降低时间复杂度，题解进行了几个剪枝：首先把所有大于的情况直接break掉，然后是在剩两个数的时候做了一个双指针，如果小于结果，就只判断左指针的右侧，如果大于结果，就只判断右指针的左侧<br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">fourSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; quadruplets;</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() &lt; <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> quadruplets;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());<span class="comment">//先排序</span></span><br><span class="line">        <span class="keyword">int</span> length = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length - <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;<span class="comment">//相邻的两个数相同看作同一种情况，每层循环都需要判断</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[i + <span class="number">1</span>] + nums[i + <span class="number">2</span>] + nums[i + <span class="number">3</span>] &gt; target) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[length - <span class="number">3</span>] + nums[length - <span class="number">2</span>] + nums[length - <span class="number">1</span>] &lt; target) &#123;<span class="comment">//两个if进行第一层剪枝，下同</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; length - <span class="number">2</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt; i + <span class="number">1</span> &amp;&amp; nums[j] == nums[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] + nums[j + <span class="number">1</span>] + nums[j + <span class="number">2</span>] &gt; target) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] + nums[length - <span class="number">2</span>] + nums[length - <span class="number">1</span>] &lt; target) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> left = j + <span class="number">1</span>, right = length - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (left &lt; right) &#123;<span class="comment">//使用双指针，逐渐逼近正确范围</span></span><br><span class="line">                    <span class="keyword">int</span> sum = nums[i] + nums[j] + nums[left] + nums[right];</span><br><span class="line">                    <span class="keyword">if</span> (sum == target) &#123;</span><br><span class="line">                        quadruplets.push_back(&#123;nums[i], nums[j], nums[left], nums[right]&#125;);</span><br><span class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[left] == nums[left + <span class="number">1</span>]) &#123;</span><br><span class="line">                            left++;</span><br><span class="line">                        &#125;</span><br><span class="line">                        left++;</span><br><span class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[right] == nums[right - <span class="number">1</span>]) &#123;</span><br><span class="line">                            right--;</span><br><span class="line">                        &#125;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; target) &#123;</span><br><span class="line">                        left++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> quadruplets;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode#117</title>
     <url>/2020/09/28/LeetCode-117/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-117填充每个节点的下一个右侧节点指针-II"><a href="#LeetCode-117填充每个节点的下一个右侧节点指针-II" class="headerlink" title="LeetCode#117填充每个节点的下一个右侧节点指针 II"></a>LeetCode#117填充每个节点的下一个右侧节点指针 II</h2><a id="more"></a>
@@ -51,40 +58,15 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode#141</title>
-    <url>/2020/10/09/LeetCode-141/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>LeetCode#141环形链表</p>
-<a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">题目链接</a><br>一道链表问题，通俗来说就是判断一个链表中是否有环<del>力扣的翻译真绝了</del>，除了开辟额外，如使用哈希表等等，还有其他的方式吗？那为了不开辟额外的空间，我们需要引入一个新的指针方式：快慢指针。<br>顾名思义，快慢指针就是两个指针，一个跑的快，一个跑得慢，它是在链表中检测是否有环的一个重要方式，具体实现方式是：声明两个指针，接下来进行循环，快指针每次步进两下，慢指针每次步进一下，如果遇到空指针那么肯定是找到了链表结尾，没有环，而如果快指针最终追上了慢指针（两个指针相遇），那么就一定是在链表中存在环。具体原理可以使用严谨的数学公式进行推导…而使用的话，我们只需要类比在操场跑圈即可：如果都围着操场跑步，那么跑得快的同学总会有追上跑的慢的同学的时候（扣圈），但是如果在直道上，跑步速度不同的两个同学是永远不会相遇的。<br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head -&gt; next == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        ListNode* fast = head -&gt; next;<span class="comment">//快指针</span></span><br><span class="line">        ListNode* slow = head;<span class="comment">//慢指针</span></span><br><span class="line">        <span class="keyword">while</span>(fast != slow)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(fast -&gt; next == <span class="literal">nullptr</span> || fast -&gt; next -&gt; next == <span class="literal">nullptr</span> || slow -&gt; next == <span class="literal">nullptr</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            fast = fast -&gt; next -&gt; next;</span><br><span class="line">            slow = slow -&gt; next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>链表</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode#18</title>
-    <url>/2020/10/06/LeetCode-18/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-18四数之和"><a href="#LeetCode-18四数之和" class="headerlink" title="LeetCode#18四数之和"></a>LeetCode#18四数之和</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/4sum/" target="_blank" rel="noopener">题目链接</a><br>其实这道题本质上就是一个四层循环判断所有可能性…还以为题解有什么高深的算法呢<del>(逃</del><br>为了避免有重复的结果出现，我们首先需要进行排序，然后如果是相同的数看作一种情况，为了降低时间复杂度，题解进行了几个剪枝：首先把所有大于的情况直接break掉，然后是在剩两个数的时候做了一个双指针，如果小于结果，就只判断左指针的右侧，如果大于结果，就只判断右指针的左侧<br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">fourSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; quadruplets;</span><br><span class="line">        <span class="keyword">if</span> (nums.<span class="built_in">size</span>() &lt; <span class="number">4</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> quadruplets;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());<span class="comment">//先排序</span></span><br><span class="line">        <span class="keyword">int</span> length = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length - <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) &#123;<span class="comment">//相邻的两个数相同看作同一种情况，每层循环都需要判断</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[i + <span class="number">1</span>] + nums[i + <span class="number">2</span>] + nums[i + <span class="number">3</span>] &gt; target) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[length - <span class="number">3</span>] + nums[length - <span class="number">2</span>] + nums[length - <span class="number">1</span>] &lt; target) &#123;<span class="comment">//两个if进行第一层剪枝，下同</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; length - <span class="number">2</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt; i + <span class="number">1</span> &amp;&amp; nums[j] == nums[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] + nums[j + <span class="number">1</span>] + nums[j + <span class="number">2</span>] &gt; target) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] + nums[length - <span class="number">2</span>] + nums[length - <span class="number">1</span>] &lt; target) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> left = j + <span class="number">1</span>, right = length - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (left &lt; right) &#123;<span class="comment">//使用双指针，逐渐逼近正确范围</span></span><br><span class="line">                    <span class="keyword">int</span> sum = nums[i] + nums[j] + nums[left] + nums[right];</span><br><span class="line">                    <span class="keyword">if</span> (sum == target) &#123;</span><br><span class="line">                        quadruplets.push_back(&#123;nums[i], nums[j], nums[left], nums[right]&#125;);</span><br><span class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[left] == nums[left + <span class="number">1</span>]) &#123;</span><br><span class="line">                            left++;</span><br><span class="line">                        &#125;</span><br><span class="line">                        left++;</span><br><span class="line">                        <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[right] == nums[right - <span class="number">1</span>]) &#123;</span><br><span class="line">                            right--;</span><br><span class="line">                        &#125;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; target) &#123;</span><br><span class="line">                        left++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        right--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> quadruplets;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode#24</title>
-    <url>/2020/10/13/LeetCode-24/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>LeetCode#24两两交换链表中的节点</p>
-<a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/" target="_blank" rel="noopener">题目链接</a><br>题面很简单，将所有节点两两交换，我先想到的是使用循环的方式，但是题解给出了更简单的递归写法。使用递归的好处是可以不用考虑两节点交换后后面那个节点的next节点应该连接到哪个节点（如果遍历的话，每次交换的两个节点的后节点的next指针将很难处理，因为后节点也需要进行交换）<br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head -&gt; next == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        ListNode* node = head -&gt; next;</span><br><span class="line">        head -&gt; next = swapPairs(node -&gt; next);</span><br><span class="line">        node -&gt; next = head;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>LeetCode#2</title>
+    <url>/2020/10/04/LeetCode-2/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-2两数相加"><a href="#LeetCode-2两数相加" class="headerlink" title="LeetCode#2两数相加"></a>LeetCode#2两数相加</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/add-two-numbers/" target="_blank" rel="noopener">题目链接</a><br>一道用链表存储每一位数，然后按位相加的题目，遍历起来没有任何难度，主要是需要注意循环结束的条件：</p>
+<ul>
+<li>第一个和第二个链表都到了末尾（都到了末尾才相当于把两个‘数’都遍历了一遍，只有一个指向nullptr时不行的）</li>
+<li>自定义的进位位需要为0（因为两个数相加可能会产生进位的情况，如果我们只考虑是否把两个已知链表遍历完了，那么可能最后会少一位）<br>其他就没什么难点了，无非是处理链表遍历的时候，如何声明新的节点和访问next节点（要避免不越界）<br>附代码：<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode* ans = <span class="literal">nullptr</span>;<span class="comment">//我们返回的答案head节点，声明的时候可以先声明为空</span></span><br><span class="line">        <span class="keyword">int</span> inc = <span class="number">0</span>;<span class="comment">//记录是否有进位</span></span><br><span class="line">        <span class="keyword">int</span> val = <span class="number">0</span>;<span class="comment">//记录当天两个链表相加的值</span></span><br><span class="line">        ListNode* cur = <span class="literal">nullptr</span>;<span class="comment">//遍历时需要用到的temp节点，也可以看作是链表中的tail节点吧？</span></span><br><span class="line">        <span class="keyword">while</span>(l1 != <span class="literal">nullptr</span> || l2 != <span class="literal">nullptr</span> || inc != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x1,x2;</span><br><span class="line">            <span class="keyword">if</span>(l1 == <span class="literal">nullptr</span>)<span class="comment">//如果其中一个链表已经到了末尾（空节点），直接将val看作0即可</span></span><br><span class="line">                x1 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                x1 = l1 -&gt; val;</span><br><span class="line">                l1 = l1 -&gt; next;<span class="comment">//访问这个链表的下一个节点</span></span><br><span class="line">            &#125;</span><br><span class="line">                </span><br><span class="line">            <span class="keyword">if</span>(l2 == <span class="literal">nullptr</span>)<span class="comment">//同上</span></span><br><span class="line">                x2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                x2 = l2 -&gt; val;</span><br><span class="line">                l2 = l2 -&gt; next;</span><br><span class="line">            &#125;</span><br><span class="line">                </span><br><span class="line">            val = x1 + x2 + inc;<span class="comment">//别忘了处理进位</span></span><br><span class="line">            inc = val/<span class="number">10</span>;</span><br><span class="line">            val %= <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>(ans == <span class="literal">nullptr</span>)<span class="comment">//在第一个head节点需要额外单独处理一下</span></span><br><span class="line">            &#123;</span><br><span class="line">                ans = <span class="keyword">new</span> ListNode(val);</span><br><span class="line">                cur = ans;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                cur -&gt; next = <span class="keyword">new</span> ListNode(val);<span class="comment">//相当于处理tail节点</span></span><br><span class="line">                cur = cur -&gt; next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
       <categories>
         <category>题解</category>
       </categories>
@@ -111,15 +93,11 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode#2</title>
-    <url>/2020/10/04/LeetCode-2/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-2两数相加"><a href="#LeetCode-2两数相加" class="headerlink" title="LeetCode#2两数相加"></a>LeetCode#2两数相加</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/add-two-numbers/" target="_blank" rel="noopener">题目链接</a><br>一道用链表存储每一位数，然后按位相加的题目，遍历起来没有任何难度，主要是需要注意循环结束的条件：</p>
-<ul>
-<li>第一个和第二个链表都到了末尾（都到了末尾才相当于把两个‘数’都遍历了一遍，只有一个指向nullptr时不行的）</li>
-<li>自定义的进位位需要为0（因为两个数相加可能会产生进位的情况，如果我们只考虑是否把两个已知链表遍历完了，那么可能最后会少一位）<br>其他就没什么难点了，无非是处理链表遍历的时候，如何声明新的节点和访问next节点（要避免不越界）<br>附代码：<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode* ans = <span class="literal">nullptr</span>;<span class="comment">//我们返回的答案head节点，声明的时候可以先声明为空</span></span><br><span class="line">        <span class="keyword">int</span> inc = <span class="number">0</span>;<span class="comment">//记录是否有进位</span></span><br><span class="line">        <span class="keyword">int</span> val = <span class="number">0</span>;<span class="comment">//记录当天两个链表相加的值</span></span><br><span class="line">        ListNode* cur = <span class="literal">nullptr</span>;<span class="comment">//遍历时需要用到的temp节点，也可以看作是链表中的tail节点吧？</span></span><br><span class="line">        <span class="keyword">while</span>(l1 != <span class="literal">nullptr</span> || l2 != <span class="literal">nullptr</span> || inc != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x1,x2;</span><br><span class="line">            <span class="keyword">if</span>(l1 == <span class="literal">nullptr</span>)<span class="comment">//如果其中一个链表已经到了末尾（空节点），直接将val看作0即可</span></span><br><span class="line">                x1 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                x1 = l1 -&gt; val;</span><br><span class="line">                l1 = l1 -&gt; next;<span class="comment">//访问这个链表的下一个节点</span></span><br><span class="line">            &#125;</span><br><span class="line">                </span><br><span class="line">            <span class="keyword">if</span>(l2 == <span class="literal">nullptr</span>)<span class="comment">//同上</span></span><br><span class="line">                x2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                x2 = l2 -&gt; val;</span><br><span class="line">                l2 = l2 -&gt; next;</span><br><span class="line">            &#125;</span><br><span class="line">                </span><br><span class="line">            val = x1 + x2 + inc;<span class="comment">//别忘了处理进位</span></span><br><span class="line">            inc = val/<span class="number">10</span>;</span><br><span class="line">            val %= <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>(ans == <span class="literal">nullptr</span>)<span class="comment">//在第一个head节点需要额外单独处理一下</span></span><br><span class="line">            &#123;</span><br><span class="line">                ans = <span class="keyword">new</span> ListNode(val);</span><br><span class="line">                cur = ans;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                cur -&gt; next = <span class="keyword">new</span> ListNode(val);<span class="comment">//相当于处理tail节点</span></span><br><span class="line">                cur = cur -&gt; next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
+    <title>LeetCode#24</title>
+    <url>/2020/10/13/LeetCode-24/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-24两两交换链表中的节点"><a href="#LeetCode-24两两交换链表中的节点" class="headerlink" title="LeetCode#24两两交换链表中的节点"></a>LeetCode#24两两交换链表中的节点</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/" target="_blank" rel="noopener">题目链接</a><br>题面很简单，将所有节点两两交换，我先想到的是使用循环的方式，但是题解给出了更简单的递归写法。使用递归的好处是可以不用考虑两节点交换后后面那个节点的next节点应该连接到哪个节点（如果遍历的话，每次交换的两个节点的后节点的next指针将很难处理，因为后节点也需要进行交换）<br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">swapPairs</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head -&gt; next == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        ListNode* node = head -&gt; next;</span><br><span class="line">        head -&gt; next = swapPairs(node -&gt; next);</span><br><span class="line">        node -&gt; next = head;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>题解</category>
       </categories>
@@ -149,34 +127,23 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode#416</title>
-    <url>/2020/10/11/LeetCode-416/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-416分割等和子集"><a href="#LeetCode-416分割等和子集" class="headerlink" title="LeetCode#416分割等和子集"></a>LeetCode#416分割等和子集</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/partition-equal-subset-sum/" target="_blank" rel="noopener">题目链接</a><br>题面很简单，意思就是给你个数组，然后问能否把这个数组分成加和相等的两个子数组，能的话返回true，否则返回false。首先能想到以下几种一定返回false：</p>
+    <title>LeetCode#106</title>
+    <url>/2020/09/26/LeetCode-106/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-106从中序与后序遍历序列构造二叉树"><a href="#LeetCode-106从中序与后序遍历序列构造二叉树" class="headerlink" title="LeetCode#106从中序与后序遍历序列构造二叉树"></a>LeetCode#106从中序与后序遍历序列构造二叉树</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/" target="_blank" rel="noopener">题目链接</a><br>前序、中序、后序遍历是二叉树最常见的三种遍历方式，它们的详解和区别在这篇博客里写过。<br>我们想要通过中序和后序遍历来获取整个树形结构，大概过程是这样的：</p>
 <ul>
-<li>如果加和的sum为奇数则一定不能等分</li>
-<li>如果数组中的元素数量n&lt;2一定不能等分</li>
-<li>如果数组中有一个元素大于sum/2一定不能等分（为了降低时间复杂度，我们只需要判断数组中最大的数和sum/2的关系即可）<br>一开始我的想法是使用递归，遍历一遍整个数组，在每个数上判断一下选择或者不选择，但是直接tle了（这样递归的时间复杂度是2^n，我算成n^2了<del>人傻了</del>）<br>附一个递归的代码：<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums,<span class="keyword">int</span> pos,<span class="keyword">int</span> cnt,<span class="keyword">int</span>&amp; sum,<span class="keyword">bool</span>&amp; flag)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cnt == sum)</span><br><span class="line">        &#123;</span><br><span class="line">            flag = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt &gt; sum)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(pos == nums.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        dfs(nums,pos+<span class="number">1</span>,cnt+nums[pos],sum,flag);</span><br><span class="line">        dfs(nums,pos+<span class="number">1</span>,cnt,sum,flag);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canPartition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.<span class="built_in">size</span>() ; i++)</span><br><span class="line">            sum += nums[i];</span><br><span class="line">        <span class="keyword">if</span>(sum%<span class="number">2</span>==<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            sum/=<span class="number">2</span>;</span><br><span class="line">            dfs(nums,<span class="number">0</span>,<span class="number">0</span>,sum,flag);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-而正确的解法应该是使用动态规划，和我的想法差不多，也是判断每个数选择或者不选择，这样就可以把这道题模型化为01背包<del>还是菜没想到</del><br>dp[i][j]的含义是当使用数组中的前i个数，能否组合成j<br>初始化dp数组有几个情况：</li>
-<li>当i=0的时候，即只使用数组中第0个数，dp[0][num[0]]=true</li>
-<li>当j=0的时候，不选择任何数即可满足条件，所以dp[i][0]=true<br><del>dp[i][num[i]]=true也是成立的，但是好像没啥用</del><br>动态转移方程分为两种情况：</li>
-<li>选取num[i],dp[i][j] = dp[i-1][j-num[i]]</li>
-<li>不选取num[i],dp[i][j]=dp[i-1][j]</li>
+<li>首先通过找规律我们能看出来，后序节点的最后一个即为根节点</li>
+<li>我们在中序中找到根节点，就可以根据中节点来将中序分为左右两部分，而这两部分左右分别是根节点的左右子树</li>
+<li>通过递归的方式，来不停缩小递归范围，最后找到左右子树皆为空的节点即为叶子节点<br>附代码（核心位置已经写了注释）：<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> post;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; postorder,<span class="keyword">int</span> pos1,<span class="keyword">int</span> pos2)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cur;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = pos1 ; i &lt;= pos2 ; i ++)<span class="comment">//在限定中序搜索范围后，查找是否有当前的后序节点</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(inorder[i] == postorder[post])</span><br><span class="line">            &#123;</span><br><span class="line">                cur = i;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="literal">false</span>)<span class="comment">//如果没找到当前后续节点，则该后序节点不在当前子树中</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        TreeNode* node = <span class="keyword">new</span> TreeNode(postorder[post]);<span class="comment">//找到了之后返回当前节点</span></span><br><span class="line">        post--;<span class="comment">//找到后继续搜索下一个后序节点</span></span><br><span class="line">        node -&gt; right = dfs(inorder,postorder,cur + <span class="number">1</span>,pos2);</span><br><span class="line">        node -&gt; left = dfs(inorder,postorder,pos1,cur - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; postorder)</span> </span>&#123;    </span><br><span class="line">        post = inorder.<span class="built_in">size</span>()<span class="number">-1</span>;<span class="comment">//指向后序节点的指针，初始化为后序的最后一个节点</span></span><br><span class="line">        <span class="keyword">return</span> dfs(inorder,postorder,<span class="number">0</span>,inorder.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>附代码之前，再记录两个从来没用过的函数，accumulate()和*max_element()。<br>accumulate()函数在#include<numeric>头文件中，作用是累加求和，当然，你也可以自定义类型求和(数据处理)。accumulate带有三个形参：头两个形参指定要累加的元素范围，第三个形参则是累加的初值，例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = accumulate(vec.<span class="built_in">begin</span>() , vec.<span class="built_in">end</span>() , <span class="number">42</span>);  <span class="comment">//求vector容器所有元素的累加和，累加初值设为42</span></span><br></pre></td></tr></table></figure>
-<p>还有种另类用法是将整形vector转换为字符串，例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> sum = accumulate(v.<span class="built_in">begin</span>() , v.<span class="built_in">end</span>() , <span class="built_in">string</span>(<span class="string">" "</span>));</span><br></pre></td></tr></table></figure>
-
-<p><em>max_element()函数，返回容器中的最大值，相对应的，</em>min_element()函数返回容器/数组中的最小值，它们都在#include<algorithm>头文件中。</p>
-<p>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canPartition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> sum = accumulate(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> maxNum = *max_element(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">if</span> (sum &amp; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> target = sum / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (maxNum &gt; target) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">dp</span><span class="params">(n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(target + <span class="number">1</span>, <span class="number">0</span>))</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[<span class="number">0</span>][nums[<span class="number">0</span>]] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> num = nums[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= target; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt;= num) &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j] | dp[i - <span class="number">1</span>][j - num];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n - <span class="number">1</span>][target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
         <tag>c++</tag>
-        <tag>动态规划</tag>
+        <tag>题解</tag>
+        <tag>二叉树</tag>
       </tags>
   </entry>
   <entry>
@@ -210,6 +177,51 @@
       <tags>
         <tag>c++</tag>
         <tag>深搜</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#474</title>
+    <url>/2020/09/12/LeetCode-474/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-474一和零"><a href="#LeetCode-474一和零" class="headerlink" title="LeetCode#474一和零"></a>LeetCode#474一和零</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/ones-and-zeroes/" target="_blank" rel="noopener">链接</a><br>三维动规，可以循环判断每一个包含的字符串从而进行空间优化，注意在动规的时候需要从后往前找（即从m-&gt;cnt1,n-&gt;cnt2，从前往后会影响之前的状态<del>改了好久，菜啊</del>）动态规划可太快乐了。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">200</span>][<span class="number">200</span>];</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMaxForm</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; strs.<span class="built_in">size</span>() ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt1 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> cnt2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j  = <span class="number">0</span> ; j &lt; strs[i].<span class="built_in">size</span>() ; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(strs[i][j] == <span class="string">'0'</span>)</span><br><span class="line">                    cnt1++;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    cnt2++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = m ; j &gt;= cnt1 ;j --)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = n ; k &gt;= cnt2 ; k --)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j][k] = <span class="built_in">max</span>(dp[j][k],dp[j-cnt1][k-cnt2]+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#416</title>
+    <url>/2020/10/11/LeetCode-416/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-416分割等和子集"><a href="#LeetCode-416分割等和子集" class="headerlink" title="LeetCode#416分割等和子集"></a>LeetCode#416分割等和子集</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/partition-equal-subset-sum/" target="_blank" rel="noopener">题目链接</a><br>题面很简单，意思就是给你个数组，然后问能否把这个数组分成加和相等的两个子数组，能的话返回true，否则返回false。首先能想到以下几种一定返回false：</p>
+<ul>
+<li>如果加和的sum为奇数则一定不能等分</li>
+<li>如果数组中的元素数量n&lt;2一定不能等分</li>
+<li>如果数组中有一个元素大于sum/2一定不能等分（为了降低时间复杂度，我们只需要判断数组中最大的数和sum/2的关系即可）<br>一开始我的想法是使用递归，遍历一遍整个数组，在每个数上判断一下选择或者不选择，但是直接tle了（这样递归的时间复杂度是2^n，我算成n^2了<del>人傻了</del>）<br>附一个递归的代码：<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums,<span class="keyword">int</span> pos,<span class="keyword">int</span> cnt,<span class="keyword">int</span>&amp; sum,<span class="keyword">bool</span>&amp; flag)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cnt == sum)</span><br><span class="line">        &#123;</span><br><span class="line">            flag = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt &gt; sum)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(pos == nums.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        dfs(nums,pos+<span class="number">1</span>,cnt+nums[pos],sum,flag);</span><br><span class="line">        dfs(nums,pos+<span class="number">1</span>,cnt,sum,flag);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canPartition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; nums.<span class="built_in">size</span>() ; i++)</span><br><span class="line">            sum += nums[i];</span><br><span class="line">        <span class="keyword">if</span>(sum%<span class="number">2</span>==<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            sum/=<span class="number">2</span>;</span><br><span class="line">            dfs(nums,<span class="number">0</span>,<span class="number">0</span>,sum,flag);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+而正确的解法应该是使用动态规划，和我的想法差不多，也是判断每个数选择或者不选择，这样就可以把这道题模型化为01背包<del>还是菜没想到</del><br>dp[i][j]的含义是当使用数组中的前i个数，能否组合成j<br>初始化dp数组有几个情况：</li>
+<li>当i=0的时候，即只使用数组中第0个数，dp[0][num[0]]=true</li>
+<li>当j=0的时候，不选择任何数即可满足条件，所以dp[i][0]=true<br><del>dp[i][num[i]]=true也是成立的，但是好像没啥用</del><br>动态转移方程分为两种情况：</li>
+<li>选取num[i],dp[i][j] = dp[i-1][j-num[i]]</li>
+<li>不选取num[i],dp[i][j]=dp[i-1][j]</li>
+</ul>
+<p>附代码之前，再记录两个从来没用过的函数，accumulate()和*max_element()。<br>accumulate()函数在#include<numeric>头文件中，作用是累加求和，当然，你也可以自定义类型求和(数据处理)。accumulate带有三个形参：头两个形参指定要累加的元素范围，第三个形参则是累加的初值，例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> sum = accumulate(vec.<span class="built_in">begin</span>() , vec.<span class="built_in">end</span>() , <span class="number">42</span>);  <span class="comment">//求vector容器所有元素的累加和，累加初值设为42</span></span><br></pre></td></tr></table></figure>
+<p>还有种另类用法是将整形vector转换为字符串，例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> sum = accumulate(v.<span class="built_in">begin</span>() , v.<span class="built_in">end</span>() , <span class="built_in">string</span>(<span class="string">" "</span>));</span><br></pre></td></tr></table></figure>
+
+<p><em>max_element()函数，返回容器中的最大值，相对应的，</em>min_element()函数返回容器/数组中的最小值，它们都在#include<algorithm>头文件中。</p>
+<p>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canPartition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> sum = accumulate(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>(), <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> maxNum = *max_element(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">if</span> (sum &amp; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> target = sum / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (maxNum &gt; target) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">dp</span><span class="params">(n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(target + <span class="number">1</span>, <span class="number">0</span>))</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        dp[<span class="number">0</span>][nums[<span class="number">0</span>]] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> num = nums[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= target; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt;= num) &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j] | dp[i - <span class="number">1</span>][j - num];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n - <span class="number">1</span>][target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -257,34 +269,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode#474</title>
-    <url>/2020/09/12/LeetCode-474/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-474一和零"><a href="#LeetCode-474一和零" class="headerlink" title="LeetCode#474一和零"></a>LeetCode#474一和零</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/ones-and-zeroes/" target="_blank" rel="noopener">链接</a><br>三维动规，可以循环判断每一个包含的字符串从而进行空间优化，注意在动规的时候需要从后往前找（即从m-&gt;cnt1,n-&gt;cnt2，从前往后会影响之前的状态<del>改了好久，菜啊</del>）动态规划可太快乐了。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">200</span>][<span class="number">200</span>];</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findMaxForm</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; strs.<span class="built_in">size</span>() ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt1 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> cnt2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j  = <span class="number">0</span> ; j &lt; strs[i].<span class="built_in">size</span>() ; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(strs[i][j] == <span class="string">'0'</span>)</span><br><span class="line">                    cnt1++;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    cnt2++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = m ; j &gt;= cnt1 ;j --)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = n ; k &gt;= cnt2 ; k --)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j][k] = <span class="built_in">max</span>(dp[j][k],dp[j-cnt1][k-cnt2]+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>动态规划</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode#771</title>
-    <url>/2020/10/02/LeetCode-771/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-771宝石与石头"><a href="#LeetCode-771宝石与石头" class="headerlink" title="LeetCode#771宝石与石头"></a>LeetCode#771宝石与石头</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/jewels-and-stones/" target="_blank" rel="noopener">题目链接</a><br>特别水特别水的一道题，我主要是为了记录哈希表怎么使用的<del>不得不说哈希表真的快，击败100%</del><br>附代码：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(<span class="built_in">string</span> J, <span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length1 = J.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> length2 = S.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt;ha;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; length2 ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ha[S[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; length1 ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cnt+=ha[J[i]];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>哈希表</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode#78</title>
     <url>/2020/09/20/LeetCode-78/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-78子集"><a href="#LeetCode-78子集" class="headerlink" title="LeetCode#78子集"></a>LeetCode#78子集</h2><a id="more"></a>
@@ -317,6 +301,20 @@
       </tags>
   </entry>
   <entry>
+    <title>LeetCode#771</title>
+    <url>/2020/10/02/LeetCode-771/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-771宝石与石头"><a href="#LeetCode-771宝石与石头" class="headerlink" title="LeetCode#771宝石与石头"></a>LeetCode#771宝石与石头</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/jewels-and-stones/" target="_blank" rel="noopener">题目链接</a><br>特别水特别水的一道题，我主要是为了记录哈希表怎么使用的<del>不得不说哈希表真的快，击败100%</del><br>附代码：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(<span class="built_in">string</span> J, <span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> length1 = J.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> length2 = S.<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt;ha;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; length2 ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ha[S[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; length1 ; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cnt+=ha[J[i]];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>哈希表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode#84</title>
     <url>/2020/09/14/LeetCode-84/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-84柱状图中最大的矩形"><a href="#LeetCode-84柱状图中最大的矩形" class="headerlink" title="LeetCode#84柱状图中最大的矩形"></a>LeetCode#84柱状图中最大的矩形</h2><a id="more"></a>
@@ -341,6 +339,30 @@
       <tags>
         <tag>c++</tag>
         <tag>单调栈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode#94</title>
+    <url>/2020/09/14/LeetCode-94/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-94二叉树的中序遍历"><a href="#LeetCode-94二叉树的中序遍历" class="headerlink" title="LeetCode#94二叉树的中序遍历"></a>LeetCode#94二叉树的中序遍历</h2><a id="more"></a>
+<p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">题目链接</a></p>
+<p>二叉树的中序遍历，首先我们来看一下二叉树的前序（VLR）、中序（LDR）、后序（LRD）遍历的定义:</p>
+<p>前序遍历：先访问根节点，再遍历左子树，最后遍历右子树</p>
+<p>中序遍历：先遍历左子树，再访问根节点，最后遍历右子树</p>
+<p>后序遍历：先遍历左子树，再访问右子树，最后访问根节点</p>
+<p>有了三种遍历的定义，我们在举个例子具体看一下：<br><img src="/images/erchashu.png" alt=""></p>
+<p>先序遍历：123564</p>
+<p>中序遍历：153624</p>
+<p>后续遍历：563421</p>
+<p>结合这个具体的例子是不是就理解了呢？</p>
+<p>理解了中序遍历，代码就很好理解了，先判断当前节点是否右左子树，如果有则继续遍历，没有则直接将当前节点存入答案，最后再遍历右子树。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;ans;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node)</span></span></span><br><span class="line"><span class="function">    </span>&#123;<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(node -&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">            dfs(node -&gt; left);</span><br><span class="line">        ans.push_back(node -&gt; val);</span><br><span class="line">        <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">            dfs(node -&gt; right); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        dfs(root);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>二叉树</tag>
       </tags>
   </entry>
   <entry>
@@ -371,27 +393,19 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode#94</title>
-    <url>/2020/09/14/LeetCode-94/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="LeetCode-94二叉树的中序遍历"><a href="#LeetCode-94二叉树的中序遍历" class="headerlink" title="LeetCode#94二叉树的中序遍历"></a>LeetCode#94二叉树的中序遍历</h2><a id="more"></a>
-<p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">题目链接</a></p>
-<p>二叉树的中序遍历，首先我们来看一下二叉树的前序（VLR）、中序（LDR）、后序（LRD）遍历的定义:</p>
-<p>前序遍历：先访问根节点，再遍历左子树，最后遍历右子树</p>
-<p>中序遍历：先遍历左子树，再访问根节点，最后遍历右子树</p>
-<p>后序遍历：先遍历左子树，再访问右子树，最后访问根节点</p>
-<p>有了三种遍历的定义，我们在举个例子具体看一下：<br><img src="/images/erchashu.png" alt=""></p>
-<p>先序遍历：123564</p>
-<p>中序遍历：153624</p>
-<p>后续遍历：563421</p>
-<p>结合这个具体的例子是不是就理解了呢？</p>
-<p>理解了中序遍历，代码就很好理解了，先判断当前节点是否右左子树，如果有则继续遍历，没有则直接将当前节点存入答案，最后再遍历右子树。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;ans;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* node)</span></span></span><br><span class="line"><span class="function">    </span>&#123;<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(node -&gt;left != <span class="literal">nullptr</span>)</span><br><span class="line">            dfs(node -&gt; left);</span><br><span class="line">        ans.push_back(node -&gt; val);</span><br><span class="line">        <span class="keyword">if</span>(node -&gt; right != <span class="literal">nullptr</span>)</span><br><span class="line">            dfs(node -&gt; right); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> ans;</span><br><span class="line">        dfs(root);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>Leetcode#637</title>
+    <url>/2020/09/12/Leetcode-637/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="Leetcode-637二叉树的层平均值"><a href="#Leetcode-637二叉树的层平均值" class="headerlink" title="Leetcode#637二叉树的层平均值"></a>Leetcode#637二叉树的层平均值</h2><a id="more"></a>
+<p>水题，直接一个裸的广搜，按层遍历树的每一层即可</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="built_in">queue</span>&lt;TreeNode*&gt;qu;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;ans;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; <span class="title">averageOfLevels</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        qu.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!qu.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt = qu.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">double</span> temp = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; cnt ;i ++)</span><br><span class="line">            &#123;</span><br><span class="line">                temp += qu.front() -&gt; val;</span><br><span class="line">                <span class="keyword">if</span>(qu.front() -&gt; left != <span class="literal">NULL</span>)</span><br><span class="line">                    qu.push(qu.front() -&gt; left);</span><br><span class="line">                <span class="keyword">if</span>(qu.front() -&gt; right != <span class="literal">NULL</span>)</span><br><span class="line">                    qu.push(qu.front() -&gt; right);</span><br><span class="line">                qu.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            ans.push_back(temp/cnt);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><del>尝试用auto声明居然出现了误差，不知道为什么会自动成int类型，果然还是菜啊</del></p>
+]]></content>
       <categories>
         <category>题解</category>
       </categories>
       <tags>
         <tag>c++</tag>
-        <tag>二叉树</tag>
+        <tag>dfs</tag>
       </tags>
   </entry>
   <entry>
@@ -412,61 +426,86 @@
       </tags>
   </entry>
   <entry>
-    <title>Leetcode#637</title>
-    <url>/2020/09/12/Leetcode-637/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="Leetcode-637二叉树的层平均值"><a href="#Leetcode-637二叉树的层平均值" class="headerlink" title="Leetcode#637二叉树的层平均值"></a>Leetcode#637二叉树的层平均值</h2><a id="more"></a>
-<p>水题，直接一个裸的广搜，按层遍历树的每一层即可</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="built_in">queue</span>&lt;TreeNode*&gt;qu;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;ans;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; <span class="title">averageOfLevels</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        qu.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!qu.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> cnt = qu.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">double</span> temp = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; cnt ;i ++)</span><br><span class="line">            &#123;</span><br><span class="line">                temp += qu.front() -&gt; val;</span><br><span class="line">                <span class="keyword">if</span>(qu.front() -&gt; left != <span class="literal">NULL</span>)</span><br><span class="line">                    qu.push(qu.front() -&gt; left);</span><br><span class="line">                <span class="keyword">if</span>(qu.front() -&gt; right != <span class="literal">NULL</span>)</span><br><span class="line">                    qu.push(qu.front() -&gt; right);</span><br><span class="line">                qu.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            ans.push_back(temp/cnt);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><del>尝试用auto声明居然出现了误差，不知道为什么会自动成int类型，果然还是菜啊</del></p>
-]]></content>
-      <categories>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>dfs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OJ内核新坑</title>
-    <url>/2020/10/07/OJ%E5%86%85%E6%A0%B8%E6%96%B0%E5%9D%91/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近准备写一个oj的内核以提升自己对于c++网络编程的理解和认识<del>（菜</del>，顺便没准还能投入实际生产使用环境中<del>（在想peach</del>。<br>今天先记录一下关于调用子进程的一些代码：</p>
-<h2 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line">system();</span><br></pre></td></tr></table></figure>
-<p>system函数大家应该都用过吧，它的功能就是在终端中发出一个命令，也就是相当于直接在c文件中实现在终端的命令运行。<br>system的实质其实和exec类似，system（）和exec（）都可以执行进程外的命令，system是在原进程上开辟了一个新的进程，但是exec是用新进程（命令）覆盖了原有的进程；而system（）和exec（）都有能产生返回值，system的返回值并不影响原有进程，但是exec的返回值影响了原进程。<br>但是</p>
-]]></content>
-      <categories>
-        <category>OJ内核</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>oj内核</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VScode配置c++环境</title>
-    <url>/2020/10/11/VScode%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>重装系统之后，许多环境变量都需要重新配置…这次使用了一个不同方法来配置Windows下使用VScode c++的方法。</p>
+    <title>c++虚函数(续)</title>
+    <url>/2020/10/21/c-%E8%99%9A%E5%87%BD%E6%95%B0-%E7%BB%AD/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>c++中的虚函数除了写到的内容之外,还有一些用法,这次就把它们全部补齐吧。</p>
 <a id="more"></a>
-<p><a href="https://zhuanlan.zhihu.com/p/77645306" target="_blank" rel="noopener">参考链接</a></p>
-<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>vscode本质上只是一个文本编辑器<del>大佬都用记事本写代码</del>，所以首先我们需要安装c/c++的编译环境，这里我选择的是mingw（<a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/seh/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z/download" target="_blank" rel="noopener">下载地址</a>）。下载好之后，解压到一个你找得到的文件夹（我的是C:\MinGW-w64，下面的内容都基于这个路径），然后右键计算机-高级系统设置-环境变量，然后在下方的系统变量中找到Path，双击打开，新建一个环境变量，地址填为：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\MinGW-w64\bin</span><br></pre></td></tr></table></figure>
-<p>这个是我自己的路径，你们需要把前面的替换为自己刚才解压好的那个路径，保存并确定。然后运行cmd，输入：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
-<p>如果正常显示了编译器的版本，则证明配置成功，否则就需要检查你是否哪步出现了问题。</p>
-<h2 id="VScode插件安装及配置"><a href="#VScode插件安装及配置" class="headerlink" title="VScode插件安装及配置"></a>VScode插件安装及配置</h2><p>在VScode端，为了代码的美观性以及能够系统及时的给我们纠正错误，我们需要安装一个名为C/C++的官方拓展，如果想要简体中文，还需要安装chinese(simplified)拓展。<br>接下来找一个你经常写代码的文件夹（注意不要在路径中包含中文名，否则会产生奇奇怪怪的bug），然后用VScode打开，在这个文件夹中新建一个文件夹名为:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.vscode&#x2F;&#x2F;注意有个点</span><br></pre></td></tr></table></figure>
-<p>再在.vscode文件夹中新建两个文件，分别为launch.json和tasks.json，然后在两个文件中填入如下内容：<br>launch.json</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">    <span class="attr">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"C/C++"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"cppdbg"</span>,</span><br><span class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">            <span class="attr">"program"</span>: <span class="string">"$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe"</span>,</span><br><span class="line">            <span class="attr">"args"</span>: [],</span><br><span class="line">            <span class="attr">"stopAtEntry"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span>,</span><br><span class="line">            <span class="attr">"environment"</span>: [],</span><br><span class="line">            <span class="attr">"externalConsole"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"MIMode"</span>: <span class="string">"gdb"</span>,</span><br><span class="line">            <span class="attr">"miDebuggerPath"</span>: <span class="string">"gdb.exe"</span>,</span><br><span class="line">            <span class="attr">"preLaunchTask"</span>: <span class="string">"compile"</span>,</span><br><span class="line">            <span class="attr">"setupCommands"</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">"description"</span>: <span class="string">"Enable pretty-printing for gdb"</span>,</span><br><span class="line">                    <span class="attr">"text"</span>: <span class="string">"-enable-pretty-printing"</span>,</span><br><span class="line">                    <span class="attr">"ignoreFailures"</span>: <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>tasks.json</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"2.0.0"</span>,</span><br><span class="line">    <span class="attr">"tasks"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"shell"</span>,</span><br><span class="line">            <span class="attr">"label"</span>: <span class="string">"compile"</span>,</span><br><span class="line">            <span class="attr">"command"</span>: <span class="string">"g++"</span>,</span><br><span class="line">            <span class="attr">"args"</span>: [</span><br><span class="line">                <span class="string">"-g"</span>,</span><br><span class="line">                <span class="string">"$&#123;file&#125;"</span>,</span><br><span class="line">                <span class="string">"-o"</span>,</span><br><span class="line">                <span class="string">"$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"problemMatcher"</span>: [</span><br><span class="line">                <span class="string">"$gcc"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"group"</span>: &#123;</span><br><span class="line">                <span class="attr">"kind"</span>: <span class="string">"build"</span>,</span><br><span class="line">                <span class="attr">"isDefault"</span>: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>好了，现在在这个你常写代码的文件夹中打开一个c/c++文件试试看吧，只需要按f5或者左侧的运行按钮，即可对你的代码进行调试了，enjoy it~</p>
+<h2 id="虚析构函数"><a href="#虚析构函数" class="headerlink" title="虚析构函数"></a>虚析构函数</h2><p>上篇文章中说到，析构函数也是可以声明为虚函数的，如果你打算允许通过基类指针调用对象的析构函数（通过delete函数，这样是合法的），就需要让基类的虚构函数变成虚函数，否则执行delete的结果将是不确定的。<br>来看一个例子：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        ~Base();</span><br><span class="line">&#125;;</span><br><span class="line">Base::~Base()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base destructor"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        ~Derived();</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> *p;</span><br><span class="line">&#125;</span><br><span class="line">Derived::Derived()</span><br><span class="line">&#123;</span><br><span class="line">    p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line">Derived::~Derived()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derived destructor"</span>;</span><br><span class="line">    <span class="keyword">delete</span> *p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">(Base *obj)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">delete</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Base *b = <span class="keyword">new</span> Derived();</span><br><span class="line">    del(b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">输出结果：</span></span><br><span class="line"><span class="comment">Base destructor</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，我们想要的效果是通过del函数，释放掉指针指向的内存空间，但是输出结果确实只删除了基类对象。这是因为析构函数不是虚函数，所以在编译阶段编译器就要决定删除这个指针所指向的空间，由于它只知道现在的状态是基类的对象，所以它只能调用基类的析构函数，因为我们派生类的空间没有被释放，这就会导致内存泄漏。<br>而为了解决这个问题，我们只需要将基类和派生类析构函数定义为虚函数，这样在编译过程中，编译器就不会直接静态绑定基类的析构函数，而是在运行过程中，动态的执行。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">virtual</span> ~Base();</span><br><span class="line">&#125;;</span><br><span class="line">Base::~Base()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base destructor"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">virtual</span> ~Derived();</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> *p;</span><br><span class="line">&#125;</span><br><span class="line">Derived::Derived()</span><br><span class="line">&#123;</span><br><span class="line">    p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line">Derived::~Derived()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Derived destructor"</span>;</span><br><span class="line">    <span class="keyword">delete</span> *p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">(Base *obj)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">delete</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Base *b = <span class="keyword">new</span> Derived();</span><br><span class="line">    del(b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">输出结果：</span></span><br><span class="line"><span class="comment">Derived destructor</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="虚表与动态绑定"><a href="#虚表与动态绑定" class="headerlink" title="虚表与动态绑定"></a>虚表与动态绑定</h2><p>那么在运行的时候，虚函数是怎么实现动态绑定的呢？每个多态类都有一个虚表，这个虚表中有当前类各个虚函数的入口，而在每个对象中也都有指向当前类虚表的指针。具体实现过程如下：</p>
+<ul>
+<li>构造函数中为对象的虚指针赋值</li>
+<li>通过多态类型的指针或引用调用成员函数时，通过虚指针找到虚表，进而找到虚函数的入口</li>
+<li>最后通过该入口地址调用虚函数<br>来一个图示（图源清华在线）：<br><img src="/images/14.png" alt=""></li>
+</ul>
 ]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>
       <tags>
         <tag>c++</tag>
-        <tag>vscode</tag>
+        <tag>虚函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql远程连接</title>
+    <url>/2020/07/14/mysql%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天记录一个困扰了我很久，每次都是莫名其妙发生又莫名其妙解决的问题：当使用navicat连接远程数据库时无法连接（错误代码2003或其他）问题的简单分析和解决方案。</p>
+<a id="more"></a>
+<p>当远程连接mysql数据库连接失败时，一般分为几种情况：</p>
+<ul>
+<li>未授予远程账号使用root连接的权限</li>
+<li>在配置文件中限定了只有本地IP可以连接</li>
+<li>Linux系统防火墙对3306端口（或其他指定端口）进行了限制<h2 id="授予远程账号访问权限"><a href="#授予远程账号访问权限" class="headerlink" title="授予远程账号访问权限"></a>授予远程账号访问权限</h2>在终端登陆mysql，选择mysql数据库之后查询user表中的host信息<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; select user,password,host from user;</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| user | password                                  | host           |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | localhost      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | 127.0.0.1      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | ::1            |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
+可以看到当用户为root时，只有本地账户可以进行连接，我们只需要把localhost修改为%即可。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">update user set host&#x3D;&quot;%&quot; where host&#x3D;&quot;localhost&quot;;</span><br></pre></td></tr></table></figure>
+<h2 id="解除配置文件只允许本地连接的限制"><a href="#解除配置文件只允许本地连接的限制" class="headerlink" title="解除配置文件只允许本地连接的限制"></a>解除配置文件只允许本地连接的限制</h2>找到my.conf(一般在/etc/my.conf或/etc/mysql/my.conf，版本不同会造成差异)，将下面的代码注释掉。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bind-address &#x3D; 127.0.0.1</span><br></pre></td></tr></table></figure>
+<h2 id="解除linux对端口的限制"><a href="#解除linux对端口的限制" class="headerlink" title="解除linux对端口的限制"></a>解除linux对端口的限制</h2>前面两个问题其实大部分时候都会注意到，这最后一个可真是困扰了我好久<br><del>（菜）</del>。</li>
+</ul>
+<p>首先是iptables，经过查阅资料我发现tables本身就是linux内核的一部分所以无法删除<br><del>（我还天真的想把它删了）</del><br>所以我们要做的是直接解除iptables对所有端口的限制：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">iptables -P INPUT ACCEPT</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line">iptables -P FORWARD ACCEPT</span><br><span class="line">iptables -F</span><br></pre></td></tr></table></figure>
+<p>然后如果开启了ufw，也需要关闭：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw disable</span><br></pre></td></tr></table></figure>
+
+<p>最后不要忘记重启MySQL服务。</p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>Navicat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>c++虚函数</title>
+    <url>/2020/10/19/c-%E8%99%9A%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天复习<del>（学习）</del>了c++中的虚函数，在这里做一下记录。</p>
+<a id="more"></a>
+<h2 id="virtual函数的作用"><a href="#virtual函数的作用" class="headerlink" title="virtual函数的作用"></a>virtual函数的作用</h2><p>虚函数的作用是实现动态绑定，比如我们想定义一个函数，用这个函数实现对不同的类调用相同名的成员函数，首先想到的可能是这样写的：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//假设我们已经声明了Base1、Base2、Derived三个类，Base2继承于Base1，Derived继承于Base2，它们中都有手动声明的print成员函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(Base1 *obj)</span><span class="comment">//此函数是想达成我们想要的效果，即使用此函数可以实现调用不同类中的print函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    obj -&gt; <span class="built_in">print</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为我们不知道我们要调用的是哪个类中的print，所以我们只能传递一个指针，来表示传递了一个对象</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Base1 a;</span><br><span class="line">Base2 b;</span><br><span class="line">Derived c;</span><br><span class="line"><span class="built_in">display</span>(&amp;a);</span><br><span class="line"><span class="built_in">display</span>(&amp;b);</span><br><span class="line"><span class="built_in">display</span>(&amp;c);</span><br></pre></td></tr></table></figure>
+<p>看似没问题，但是这样的输出结果其实是调用了三遍a的print函数，因为在编译过程中，编译器无法根据指针去判断它指向什么类型的对象，所以display函数已经确定了对象是Base1类型的，他就只能调用这个类的print函数，这与我们要求的动态绑定不符。<br>如果能够推迟这个函数的表达式，让它到程序运行的时候才决定到底指针是什么类型的，那么是不是就达到了我们的要求呢？那我们又应该怎么做呢？答案就是使用virtual关键字。</p>
+<h2 id="virtual函数的使用"><a href="#virtual函数的使用" class="headerlink" title="virtual函数的使用"></a>virtual函数的使用</h2><p>我们只需要在声明成员函数的时候，在成员函数的前面加上virtual关键字，就相当于指示了编译器不要在编译阶段决定这个函数，不要做静态绑定，而是要在程序运行的时候实现动态的绑定，比如上面这个例子，我们就可以在每个类的print函数上如此声明：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">//在类外声明print的具体功能</span></span><br><span class="line"><span class="keyword">void</span> Base1::<span class="built_in">print</span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base1:print"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为我们要实现的是在程序运行的时候再去决定函数的函数体到底是哪部分，所以最好就不要把虚函数声明成类中的内联函数，这样会导致在编译过程中直接嵌入到代码中。这样只要再执行之前写好的display函数，虽然也是调用的基类指针，但是这样就实现了函数体的动态绑定，根据传入指针的类型不同调用不同的print函数。（虚函数再编译过程中编译器不做决定，而是根据程序运行时的具体情况做决定）<br>注意，虚函数必须是非静态的成员函数，因为它是动态的，换句话说虚函数是属于具体的对象而不是属于类的，它是需要在程序运行后通过指针指向具体的对象，再判断对象的具体类，再决定调用哪个函数体。</p>
+<h2 id="virtual函数使用总结"><a href="#virtual函数使用总结" class="headerlink" title="virtual函数使用总结"></a>virtual函数使用总结</h2><ul>
+<li>一般成员函数可以是虚函数，构造函数不能是虚函数，析构函数可以是虚函数</li>
+<li>virtual关键字只能在函数原型的声明时添加，而不能在成员函数的实现时</li>
+<li>在派生类中，可以直接对基类的虚函数进行覆盖</li>
+<li>虚函数一般不声明为内联函数，因为虚函数是运行时动态调用函数体的，而内联函数在处理时是静态的</li>
+<li>如果基类声明了virtual关键字的虚函数，在继承时派生类中默认会把这个函数继承成virtual类型（如果继承的虚函数不写virtual关键字，系统会判定这个函数和基类的虚函数原型是否一致，如果一致就会将它也视为虚函数）</li>
+<li>派生类中的虚函数会隐藏基类中同名函数的所有其他重载形式，如果需要调用基类中虚函数的其他重载形式，还是需要指定类名</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>虚函数</tag>
       </tags>
   </entry>
   <entry>
@@ -507,55 +546,27 @@
       </tags>
   </entry>
   <entry>
-    <title>vscode远程编程</title>
-    <url>/2020/09/23/vscode%E8%BF%9C%E7%A8%8B%E7%BC%96%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近在学习c++的多线程和网络流，突然发现好多函数在windows下无法实现，就想起了尝试一下VSCode的远程编程。</p>
+    <title>为hexo博客添加全局aplayer播放器</title>
+    <url>/2020/10/13/%E4%B8%BAhexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%85%A8%E5%B1%80aplayer%E6%92%AD%E6%94%BE%E5%99%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前一阵子在博客搞了个，歌单状态下不显示歌名，最重要的是当切换页面的时候音乐会重新播放<del>忍不了了</del>，今天终于搞明白了aplayer这个好东西，不仅可以配合meting使用网络歌单，还可以配合pjax实现全站的跨页面不刷新播放。</p>
 <a id="more"></a>
-<p><a href="https://zhuanlan.zhihu.com/p/64849549" target="_blank" rel="noopener">参考链接</a><br>远程编程顾名思义，在本地的VSCodeIDE上连接远程服务器，直接将文件写在远程环境上，当然调试也是在更符合实际服务器工作环境的Linux上进行。<del>Linux确实香，但是真的不喜欢用</del><br>其实这个功能主要是依靠于VSCode最近几个版本终于加入了正式支持的远程编程功能插件，它可以实现：</p>
-<ul>
-<li>SSH连接虚拟机/实体服务器编程</li>
-<li>连接容器</li>
-<li>连接WSL（Linux子系统）~~不过我还没用过<br>安装过程其实并不麻烦，我简单的把它分为以下几步：<h2 id="VScode端配置"><a href="#VScode端配置" class="headerlink" title="VScode端配置"></a>VScode端配置</h2>在VSCode上的配置其实很简单，我们首先需要在插件中搜索Remote-SSH，并安装拓展。<br>然后需要在左侧栏中找到你的远程资源管理器，选择新建或者设置ssh\config（这需要你提前安装了Open-SSH，<del>如果这个都没安装的话谈什么远程编程</del>）<br>具体设置如下：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Host CentOS&#x2F;&#x2F;别名</span><br><span class="line">    HostName 192.168.91.132&#x2F;&#x2F;连接的ip地址</span><br><span class="line">    User root&#x2F;&#x2F;登陆的用户名</span><br><span class="line">    Port 22&#x2F;&#x2F;端口，ssh一般都是22吧</span><br><span class="line">    IdentityFile C:\Users\xxx（用户名）\.ssh\id_rsa&#x2F;&#x2F;你电脑的私钥位置，这样以后就不需要输入密码了</span><br></pre></td></tr></table></figure>
-最后一项其实也可以不配置，这样就需要每次输入用户名和密码了。<br>至此，如果你没有设置密钥远程配置就算完成了。<h2 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a>密钥生成</h2>如果配置密钥的话，首先需要拥有一个密钥，没有生成过密钥的话就执行如下命令：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
-生成密钥的时候一路回车就可以了。<h2 id="密钥上传到服务器"><a href="#密钥上传到服务器" class="headerlink" title="密钥上传到服务器"></a>密钥上传到服务器</h2>然后我们需要把公钥传到服务器上，我使用的方法是直接用git自带的命令：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-copy-id 你的用户名@你的IP</span><br><span class="line">&#x2F;&#x2F;例如我的就可以使用ssh-copy-id root@192.168.91.132</span><br></pre></td></tr></table></figure>
-或者你也可以手动将密钥上传到服务器，也就是将你id_rsa.pub里的内容全部复制到服务器的.ssh/authorized_keys文件中，这样和上面的实现的效果是一样的<br>这下就基本完成了，只需要再启动一下你的远程窗口就ok了，enjoy it~</li>
-</ul>
+<p>此篇博客参考了这位大佬的好多思路，附<a href="https://hakurei.red/2019/11/25/%E4%B8%BAHexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%85%A8%E5%B1%80APlayer%E6%92%AD%E6%94%BE%E5%99%A8/#APlayer" target="_blank" rel="noopener">链接</a></p>
+<h2 id="Aplayer和Meting的配置"><a href="#Aplayer和Meting的配置" class="headerlink" title="Aplayer和Meting的配置"></a>Aplayer和Meting的配置</h2><p>Aplayer是一个开源的，网页端的播放器，这是它的<a href="https://aplayer.js.org/#/zh-Hans/" target="_blank" rel="noopener">使用文档</a>，这个播放器可以支持播放本地自定义的音频、歌词、专辑封面等等，但是由于我是想直接使用网络端的歌单，所以直接跳过了这一步，本地使用方法可以直接参考使用文档，写的很详细。<br>接下来的重头戏是直接使用meting实现网络歌单，我是想在所有页面的固定位置显示这个播放模块，正好aplayer自带的吸底模式(翻译为fixed，有点难理解)符合我的要求，它会始终出现在网页的左下角，配合pjax实现不刷新内容，简直不要太爽。<br>我使用的是hexo+next的博客，我想在所有页面都实现这个效果，所以我需要找到主题的页面布局文件，\themes\next\layout\ _layoout.swig<br>首先在body中添加依赖：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"</span>&gt;</span><span class="comment">&lt;!--APlayer的样式--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="comment">&lt;!--APlayer的依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="comment">&lt;!--Meting的依赖--&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里我们指定了版本，因为meting的新版本和aplayer有奇怪的兼容性问题…<br>然后就是使用metingjs了，首先附一个官方的<a href="https://github.com/metowolf/MetingJS" target="_blank" rel="noopener">使用文档</a>，使用方法也非常的简单，直接看代码吧：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meting-js</span></span></span><br><span class="line"><span class="tag">	<span class="attr">server</span>=<span class="string">"netease"</span>//歌单的服务商，比如<span class="attr">netease</span>代表网易云，<span class="attr">tencent</span>代表<span class="attr">qq</span>音乐等等</span></span><br><span class="line"><span class="tag">	<span class="attr">type</span>=<span class="string">"playlist"</span>//类型，单曲或歌单</span></span><br><span class="line"><span class="tag">  <span class="attr">autoplay</span>=<span class="string">true</span> //打开网页自动播放</span></span><br><span class="line"><span class="tag">  <span class="attr">fixed</span>=<span class="string">true</span> //使用吸底模式</span></span><br><span class="line"><span class="tag">	<span class="attr">id</span>=<span class="string">"5286851482"</span>&gt;</span> //歌单的id，在网页端可以直接查看</span><br><span class="line"><span class="tag">&lt;/<span class="name">meting-js</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>保存，重启服务之后发现已经出现了吸底的浮窗</p>
+<h2 id="pjax的配置"><a href="#pjax的配置" class="headerlink" title="pjax的配置"></a>pjax的配置</h2><p>配置完aplayer，接下来就是配置跨页面不刷新了。由于我使用的是next主题，其实next主题已经想到了可能是用的pjax，所以我们只需要安装依赖，并且在config中启用即可。<br>首先安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd themes&#x2F;next</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;theme-next-pjax source&#x2F;lib&#x2F;pjax</span><br></pre></td></tr></table></figure>
+<p>然后我们只需要在next的_config.yml中找到pjax选项，将false改为true即可<br>enjoy it~</p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>vscode</tag>
-        <tag>远程编程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql远程连接</title>
-    <url>/2020/07/14/mysql%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天记录一个困扰了我很久，每次都是莫名其妙发生又莫名其妙解决的问题：当使用navicat连接远程数据库时无法连接（错误代码2003或其他）问题的简单分析和解决方案。</p>
-<a id="more"></a>
-<p>当远程连接mysql数据库连接失败时，一般分为几种情况：</p>
-<ul>
-<li>未授予远程账号使用root连接的权限</li>
-<li>在配置文件中限定了只有本地IP可以连接</li>
-<li>Linux系统防火墙对3306端口（或其他指定端口）进行了限制<h2 id="授予远程账号访问权限"><a href="#授予远程账号访问权限" class="headerlink" title="授予远程账号访问权限"></a>授予远程账号访问权限</h2>在终端登陆mysql，选择mysql数据库之后查询user表中的host信息<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; select user,password,host from user;</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| user | password                                  | host           |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | localhost      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | 127.0.0.1      |</span><br><span class="line">| root | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B | ::1            |</span><br><span class="line">+------+-------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
-可以看到当用户为root时，只有本地账户可以进行连接，我们只需要把localhost修改为%即可。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">update user set host&#x3D;&quot;%&quot; where host&#x3D;&quot;localhost&quot;;</span><br></pre></td></tr></table></figure>
-<h2 id="解除配置文件只允许本地连接的限制"><a href="#解除配置文件只允许本地连接的限制" class="headerlink" title="解除配置文件只允许本地连接的限制"></a>解除配置文件只允许本地连接的限制</h2>找到my.conf(一般在/etc/my.conf或/etc/mysql/my.conf，版本不同会造成差异)，将下面的代码注释掉。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bind-address &#x3D; 127.0.0.1</span><br></pre></td></tr></table></figure>
-<h2 id="解除linux对端口的限制"><a href="#解除linux对端口的限制" class="headerlink" title="解除linux对端口的限制"></a>解除linux对端口的限制</h2>前面两个问题其实大部分时候都会注意到，这最后一个可真是困扰了我好久<br><del>（菜）</del>。</li>
-</ul>
-<p>首先是iptables，经过查阅资料我发现tables本身就是linux内核的一部分所以无法删除<br><del>（我还天真的想把它删了）</del><br>所以我们要做的是直接解除iptables对所有端口的限制：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">iptables -P INPUT ACCEPT</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line">iptables -P FORWARD ACCEPT</span><br><span class="line">iptables -F</span><br></pre></td></tr></table></figure>
-<p>然后如果开启了ufw，也需要关闭：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ufw disable</span><br></pre></td></tr></table></figure>
-
-<p>最后不要忘记重启MySQL服务。</p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-        <tag>Navicat</tag>
+        <tag>hexo</tag>
+        <tag>aplayer</tag>
+        <tag>pjax</tag>
       </tags>
   </entry>
   <entry>
@@ -584,27 +595,18 @@
       </tags>
   </entry>
   <entry>
-    <title>为hexo博客添加全局aplayer播放器</title>
-    <url>/2020/10/13/%E4%B8%BAhexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%85%A8%E5%B1%80aplayer%E6%92%AD%E6%94%BE%E5%99%A8/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>前一阵子在博客搞了个，歌单状态下不显示歌名，最重要的是当切换页面的时候音乐会重新播放<del>忍不了了</del>，今天终于搞明白了aplayer这个好东西，不仅可以配合meting使用网络歌单，还可以配合pjax实现全站的跨页面不刷新播放。</p>
-<a id="more"></a>
-<p>此篇博客参考了这位大佬的好多思路，附<a href="https://hakurei.red/2019/11/25/%E4%B8%BAHexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%85%A8%E5%B1%80APlayer%E6%92%AD%E6%94%BE%E5%99%A8/#APlayer" target="_blank" rel="noopener">链接</a></p>
-<h2 id="Aplayer和Meting的配置"><a href="#Aplayer和Meting的配置" class="headerlink" title="Aplayer和Meting的配置"></a>Aplayer和Meting的配置</h2><p>Aplayer是一个开源的，网页端的播放器，这是它的<a href="https://aplayer.js.org/#/zh-Hans/" target="_blank" rel="noopener">使用文档</a>，这个播放器可以支持播放本地自定义的音频、歌词、专辑封面等等，但是由于我是想直接使用网络端的歌单，所以直接跳过了这一步，本地使用方法可以直接参考使用文档，写的很详细。<br>接下来的重头戏是直接使用meting实现网络歌单，我是想在所有页面的固定位置显示这个播放模块，正好aplayer自带的吸底模式(翻译为fixed，有点难理解)符合我的要求，它会始终出现在网页的左下角，配合pjax实现不刷新内容，简直不要太爽。<br>我使用的是hexo+next的博客，我想在所有页面都实现这个效果，所以我需要找到主题的页面布局文件，\themes\next\layout\ _layoout.swig<br>首先在body中添加依赖：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"</span>&gt;</span><span class="comment">&lt;!--APlayer的样式--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="comment">&lt;!--APlayer的依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="comment">&lt;!--Meting的依赖--&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这里我们指定了版本，因为meting的新版本和aplayer有奇怪的兼容性问题…<br>然后就是使用metingjs了，首先附一个官方的<a href="https://github.com/metowolf/MetingJS" target="_blank" rel="noopener">使用文档</a>，使用方法也非常的简单，直接看代码吧：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meting-js</span></span></span><br><span class="line"><span class="tag">	<span class="attr">server</span>=<span class="string">"netease"</span>//歌单的服务商，比如<span class="attr">netease</span>代表网易云，<span class="attr">tencent</span>代表<span class="attr">qq</span>音乐等等</span></span><br><span class="line"><span class="tag">	<span class="attr">type</span>=<span class="string">"playlist"</span>//类型，单曲或歌单</span></span><br><span class="line"><span class="tag">  <span class="attr">autoplay</span>=<span class="string">true</span> //打开网页自动播放</span></span><br><span class="line"><span class="tag">  <span class="attr">fixed</span>=<span class="string">true</span> //使用吸底模式</span></span><br><span class="line"><span class="tag">	<span class="attr">id</span>=<span class="string">"5286851482"</span>&gt;</span> //歌单的id，在网页端可以直接查看</span><br><span class="line"><span class="tag">&lt;/<span class="name">meting-js</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>保存，重启服务之后发现已经出现了吸底的浮窗</p>
-<h2 id="pjax的配置"><a href="#pjax的配置" class="headerlink" title="pjax的配置"></a>pjax的配置</h2><p>配置完aplayer，接下来就是配置跨页面不刷新了。由于我使用的是next主题，其实next主题已经想到了可能是用的pjax，所以我们只需要安装依赖，并且在config中启用即可。<br>首先安装依赖</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd themes&#x2F;next</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;theme-next-pjax source&#x2F;lib&#x2F;pjax</span><br></pre></td></tr></table></figure>
-<p>然后我们只需要在next的_config.yml中找到pjax选项，将false改为true即可<br>enjoy it~</p>
+    <title>OJ内核新坑</title>
+    <url>/2020/10/07/OJ%E5%86%85%E6%A0%B8%E6%96%B0%E5%9D%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近准备写一个oj的内核以提升自己对于c++网络编程的理解和认识<del>（菜</del>，顺便没准还能投入实际生产使用环境中<del>（在想peach</del>。<br>今天先记录一下关于调用子进程的一些代码：</p>
+<h2 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line">system();</span><br></pre></td></tr></table></figure>
+<p>system函数大家应该都用过吧，它的功能就是在终端中发出一个命令，也就是相当于直接在c文件中实现在终端的命令运行。<br>system的实质其实和exec类似，system（）和exec（）都可以执行进程外的命令，system是在原进程上开辟了一个新的进程，但是exec是用新进程（命令）覆盖了原有的进程；而system（）和exec（）都有能产生返回值，system的返回值并不影响原有进程，但是exec的返回值影响了原进程。<br>但是</p>
 ]]></content>
       <categories>
-        <category>学习笔记</category>
+        <category>OJ内核</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
-        <tag>aplayer</tag>
-        <tag>pjax</tag>
+        <tag>c++</tag>
+        <tag>oj内核</tag>
       </tags>
   </entry>
   <entry>
@@ -633,6 +635,46 @@
       </tags>
   </entry>
   <entry>
+    <title>新博客的第一篇文章</title>
+    <url>/2020/07/06/%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>折腾了一周时间终于搭好了基于hexo的个人博客，使用了next主题 <del>（主要是可以白嫖github的域名和静态页面）</del><br>接下来博客还有很多需要完善的地方<del>（以及美化（逃））</del></p>
+<a id="more"></a>
+<p><strong>预计功能有：</strong></p>
+<ul>
+<li>阅读量统计</li>
+<li>评论区</li>
+<li>以及美化 and so on…</li>
+</ul>
+<p>希望自己能坚持下来，将写博客这个好习惯保持下去</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vscode远程编程</title>
+    <url>/2020/09/23/vscode%E8%BF%9C%E7%A8%8B%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近在学习c++的多线程和网络流，突然发现好多函数在windows下无法实现，就想起了尝试一下VSCode的远程编程。</p>
+<a id="more"></a>
+<p><a href="https://zhuanlan.zhihu.com/p/64849549" target="_blank" rel="noopener">参考链接</a><br>远程编程顾名思义，在本地的VSCodeIDE上连接远程服务器，直接将文件写在远程环境上，当然调试也是在更符合实际服务器工作环境的Linux上进行。<del>Linux确实香，但是真的不喜欢用</del><br>其实这个功能主要是依靠于VSCode最近几个版本终于加入了正式支持的远程编程功能插件，它可以实现：</p>
+<ul>
+<li>SSH连接虚拟机/实体服务器编程</li>
+<li>连接容器</li>
+<li>连接WSL（Linux子系统）~~不过我还没用过<br>安装过程其实并不麻烦，我简单的把它分为以下几步：<h2 id="VScode端配置"><a href="#VScode端配置" class="headerlink" title="VScode端配置"></a>VScode端配置</h2>在VSCode上的配置其实很简单，我们首先需要在插件中搜索Remote-SSH，并安装拓展。<br>然后需要在左侧栏中找到你的远程资源管理器，选择新建或者设置ssh\config（这需要你提前安装了Open-SSH，<del>如果这个都没安装的话谈什么远程编程</del>）<br>具体设置如下：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Host CentOS&#x2F;&#x2F;别名</span><br><span class="line">    HostName 192.168.91.132&#x2F;&#x2F;连接的ip地址</span><br><span class="line">    User root&#x2F;&#x2F;登陆的用户名</span><br><span class="line">    Port 22&#x2F;&#x2F;端口，ssh一般都是22吧</span><br><span class="line">    IdentityFile C:\Users\xxx（用户名）\.ssh\id_rsa&#x2F;&#x2F;你电脑的私钥位置，这样以后就不需要输入密码了</span><br></pre></td></tr></table></figure>
+最后一项其实也可以不配置，这样就需要每次输入用户名和密码了。<br>至此，如果你没有设置密钥远程配置就算完成了。<h2 id="密钥生成"><a href="#密钥生成" class="headerlink" title="密钥生成"></a>密钥生成</h2>如果配置密钥的话，首先需要拥有一个密钥，没有生成过密钥的话就执行如下命令：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+生成密钥的时候一路回车就可以了。<h2 id="密钥上传到服务器"><a href="#密钥上传到服务器" class="headerlink" title="密钥上传到服务器"></a>密钥上传到服务器</h2>然后我们需要把公钥传到服务器上，我使用的方法是直接用git自带的命令：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-copy-id 你的用户名@你的IP</span><br><span class="line">&#x2F;&#x2F;例如我的就可以使用ssh-copy-id root@192.168.91.132</span><br></pre></td></tr></table></figure>
+或者你也可以手动将密钥上传到服务器，也就是将你id_rsa.pub里的内容全部复制到服务器的.ssh/authorized_keys文件中，这样和上面的实现的效果是一样的<br>这下就基本完成了，只需要再启动一下你的远程窗口就ok了，enjoy it~</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>远程编程</tag>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>搜索功能</title>
     <url>/2020/09/22/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>一直觉得blog的搜索功能很有用<del>装x</del>，方便我们来查找自己曾经写过的东西，所以今天按照大佬的方法给博客加了个搜索的功能，操作很简单，有手就行<del>没有也行</del></p>
@@ -651,66 +693,6 @@
       <tags>
         <tag>本地搜索</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>添加评论</title>
-    <url>/2020/07/07/%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>我发现next主题真的是个好东西，什么东西都给我们写好了，添加很多组件都很方便。接下来记录一下如何添加讨论区。</p>
-<a id="more"></a>
-<p>hexo上可用的讨论区有很多：valine、来必力、disqus、facebookcomments等等，这里选择valine作为博客使用的主力评论系统。valine是完全基于静态页面的本地评论区，加载迅速而且上手简单，而且支持markdown（简直不要太爽）。</p>
-<p>valine也是基于leancloud的服务，所以和添加阅读数量一样也需要先注册一个leancloud，并且在存储中新建一个comment类（可以参考我的)，其他操作相同）然后在next主题的配置文件中对valine进行配置。<br><img src="/images/4.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enable:&#x2F;&#x2F;是否开启valine评论</span><br><span class="line">appid: &#x2F;&#x2F;你自己的id</span><br><span class="line">appkey: &#x2F;&#x2F;你自己的key</span><br><span class="line">notify: &#x2F;&#x2F;是否通过邮箱通知你</span><br><span class="line">verify: &#x2F;&#x2F;是否验证（反人类建议关闭）</span><br><span class="line">placeholder: &#x2F;&#x2F;评论区的默认标语</span><br><span class="line">avatar: &#x2F;&#x2F;头像</span><br><span class="line">guest_info: &#x2F;&#x2F;评论的人需要填什么信息</span><br><span class="line">pageSize: &#x2F;&#x2F;每页几个评论</span><br><span class="line">language: &#x2F;&#x2F;语言</span><br><span class="line">visitor: &#x2F;&#x2F;文章阅读稳定性相关（不太懂）</span><br><span class="line">comment_count:&#x2F;&#x2F;评论计数</span><br><span class="line">recordIP: &#x2F;&#x2F;记录ip（别人看不到）</span><br><span class="line">serverURLs: &#x2F;&#x2F;如果他没填写昵称的话显示的东西</span><br></pre></td></tr></table></figure>
-<p>开启评论之后，会在每个页面都显示评论，如果我们不想让它显示评论呢？（比如标签页和分类页）</p>
-<p>我们就需要在这篇文章的头部部分加上：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">comment:false</span><br></pre></td></tr></table></figure>
-<p><img src="/images/5.png" alt=""><br>作为一个强迫症，在添加评论数后，头部没有做到全部汉化，评论数还显示valine是我难以忍受的，这是因为next默认支持多种评论区，所以默认显示当前开启了何种评论所以我们可以自己编译一下。在next文件夹中找到language文件夹，找到你当前已选择语言的yml文件对应的post部分（我用的中文，所以就在zh_CN.yml文件里），按照上面的样式添加一条：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">comments.valine: 评论数&#x2F;&#x2F;注意一定要有个空格</span><br></pre></td></tr></table></figure>
-<p>效果如图：<br><img src="/images/6.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>评论</tag>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>添加阅读次数</title>
-    <url>/2020/07/07/%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E6%AC%A1%E6%95%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>博客添加阅读次数是一件很有用<del>装逼</del>的事情，以下均是基于GitHub page+hexo+next主题进行配置。</p>
-<a id="more"></a>
-<p>首先需要用到leancloud的服务，首先我们需要注册一个<a href="https://leancloud.cn/dashboard/login.html" target="_blank" rel="noopener">leancloud</a>，登陆后创建一个开发版的应用,这里面应用名称可随意填写 <del>（反正也可以改）</del>。<br><img src="/images/1.png" alt=""></p>
-<p>然后在存储中创建一个名为Conter的新class（注意权限都为所有用户）<br><img src="/images/2.png" alt=""></p>
-<p>然后在设置-安全中心-Web安全域名中填入自己博客的域名，以防被ban导致无法使用，然后进入应用Keys，将AppID和AppKey都复制下来一会会用到。</p>
-<p>接下来是本地的配置，由于next默认是支持这个功能的，所以我们只需要开启就好了，在next主题根目录下找到_config.yml文件，按照如图所示进行修改（appid和keyid填你自己的）<br><img src="/images/3.png" alt=""><br>注意一定要把security改为false，否则会提示你计数不可用（当然也有其他办法只不过我不太会233）<br>编译，上传，发现已经搞好了！</p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>阅读次数</tag>
-        <tag>leancloud</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新博客的第一篇文章</title>
-    <url>/2020/07/06/%E6%96%B0%E5%8D%9A%E5%AE%A2%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>折腾了一周时间终于搭好了基于hexo的个人博客，使用了next主题 <del>（主要是可以白嫖github的域名和静态页面）</del><br>接下来博客还有很多需要完善的地方<del>（以及美化（逃））</del></p>
-<a id="more"></a>
-<p><strong>预计功能有：</strong></p>
-<ul>
-<li>阅读量统计</li>
-<li>评论区</li>
-<li>以及美化 and so on…</li>
-</ul>
-<p>希望自己能坚持下来，将写博客这个好习惯保持下去</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
   </entry>
   <entry>
     <title>红黑树</title>
@@ -738,6 +720,49 @@
       </tags>
   </entry>
   <entry>
+    <title>添加阅读次数</title>
+    <url>/2020/07/07/%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E6%AC%A1%E6%95%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>博客添加阅读次数是一件很有用<del>装逼</del>的事情，以下均是基于GitHub page+hexo+next主题进行配置。</p>
+<a id="more"></a>
+<p>首先需要用到leancloud的服务，首先我们需要注册一个<a href="https://leancloud.cn/dashboard/login.html" target="_blank" rel="noopener">leancloud</a>，登陆后创建一个开发版的应用,这里面应用名称可随意填写 <del>（反正也可以改）</del>。<br><img src="/images/1.png" alt=""></p>
+<p>然后在存储中创建一个名为Conter的新class（注意权限都为所有用户）<br><img src="/images/2.png" alt=""></p>
+<p>然后在设置-安全中心-Web安全域名中填入自己博客的域名，以防被ban导致无法使用，然后进入应用Keys，将AppID和AppKey都复制下来一会会用到。</p>
+<p>接下来是本地的配置，由于next默认是支持这个功能的，所以我们只需要开启就好了，在next主题根目录下找到_config.yml文件，按照如图所示进行修改（appid和keyid填你自己的）<br><img src="/images/3.png" alt=""><br>注意一定要把security改为false，否则会提示你计数不可用（当然也有其他办法只不过我不太会233）<br>编译，上传，发现已经搞好了！</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>阅读次数</tag>
+        <tag>leancloud</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>添加评论</title>
+    <url>/2020/07/07/%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>我发现next主题真的是个好东西，什么东西都给我们写好了，添加很多组件都很方便。接下来记录一下如何添加讨论区。</p>
+<a id="more"></a>
+<p>hexo上可用的讨论区有很多：valine、来必力、disqus、facebookcomments等等，这里选择valine作为博客使用的主力评论系统。valine是完全基于静态页面的本地评论区，加载迅速而且上手简单，而且支持markdown（简直不要太爽）。</p>
+<p>valine也是基于leancloud的服务，所以和添加阅读数量一样也需要先注册一个leancloud，并且在存储中新建一个comment类（可以参考我的)，其他操作相同）然后在next主题的配置文件中对valine进行配置。<br><img src="/images/4.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enable:&#x2F;&#x2F;是否开启valine评论</span><br><span class="line">appid: &#x2F;&#x2F;你自己的id</span><br><span class="line">appkey: &#x2F;&#x2F;你自己的key</span><br><span class="line">notify: &#x2F;&#x2F;是否通过邮箱通知你</span><br><span class="line">verify: &#x2F;&#x2F;是否验证（反人类建议关闭）</span><br><span class="line">placeholder: &#x2F;&#x2F;评论区的默认标语</span><br><span class="line">avatar: &#x2F;&#x2F;头像</span><br><span class="line">guest_info: &#x2F;&#x2F;评论的人需要填什么信息</span><br><span class="line">pageSize: &#x2F;&#x2F;每页几个评论</span><br><span class="line">language: &#x2F;&#x2F;语言</span><br><span class="line">visitor: &#x2F;&#x2F;文章阅读稳定性相关（不太懂）</span><br><span class="line">comment_count:&#x2F;&#x2F;评论计数</span><br><span class="line">recordIP: &#x2F;&#x2F;记录ip（别人看不到）</span><br><span class="line">serverURLs: &#x2F;&#x2F;如果他没填写昵称的话显示的东西</span><br></pre></td></tr></table></figure>
+<p>开启评论之后，会在每个页面都显示评论，如果我们不想让它显示评论呢？（比如标签页和分类页）</p>
+<p>我们就需要在这篇文章的头部部分加上：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">comment:false</span><br></pre></td></tr></table></figure>
+<p><img src="/images/5.png" alt=""><br>作为一个强迫症，在添加评论数后，头部没有做到全部汉化，评论数还显示valine是我难以忍受的，这是因为next默认支持多种评论区，所以默认显示当前开启了何种评论所以我们可以自己编译一下。在next文件夹中找到language文件夹，找到你当前已选择语言的yml文件对应的post部分（我用的中文，所以就在zh_CN.yml文件里），按照上面的样式添加一条：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">comments.valine: 评论数&#x2F;&#x2F;注意一定要有个空格</span><br></pre></td></tr></table></figure>
+<p>效果如图：<br><img src="/images/6.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>评论</tag>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>添加网抑云音乐播放</title>
     <url>/2020/09/29/%E6%B7%BB%E5%8A%A0%E7%BD%91%E6%8A%91%E4%BA%91%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>为博客添加一个网抑云播放的小插件。</p>
@@ -759,33 +784,30 @@ enjoy it~</li>
       </tags>
   </entry>
   <entry>
-    <title>c++虚函数</title>
-    <url>/2020/10/19/c-%E8%99%9A%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天复习<del>（学习）</del>了c++中的虚函数，在这里做一下记录。</p>
+    <title>VScode配置c++环境</title>
+    <url>/2020/10/11/VScode%E9%85%8D%E7%BD%AEc-%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>重装系统之后，许多环境变量都需要重新配置…这次使用了一个不同方法来配置Windows下使用VScode c++的方法。</p>
 <a id="more"></a>
-<h2 id="virtual函数的作用"><a href="#virtual函数的作用" class="headerlink" title="virtual函数的作用"></a>virtual函数的作用</h2><p>虚函数的作用是实现动态绑定，比如我们想定义一个函数，用这个函数实现对不同的类调用相同名的成员函数，首先想到的可能是这样写的：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//假设我们已经声明了Base1、Base2、Derived三个类，Base2继承于Base1，Derived继承于Base2，它们中都有手动声明的print成员函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(Base1 *obj)</span><span class="comment">//此函数是想达成我们想要的效果，即使用此函数可以实现调用不同类中的print函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    obj -&gt; <span class="built_in">print</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>因为我们不知道我们要调用的是哪个类中的print，所以我们只能传递一个指针，来表示传递了一个对象</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Base1 a;</span><br><span class="line">Base2 b;</span><br><span class="line">Derived c;</span><br><span class="line"><span class="built_in">display</span>(&amp;a);</span><br><span class="line"><span class="built_in">display</span>(&amp;b);</span><br><span class="line"><span class="built_in">display</span>(&amp;c);</span><br></pre></td></tr></table></figure>
-<p>看似没问题，但是这样的输出结果其实是调用了三遍a的print函数，因为在编译过程中，编译器无法根据指针去判断它指向什么类型的对象，所以display函数已经确定了对象是Base1类型的，他就只能调用这个类的print函数，这与我们要求的动态绑定不符。<br>如果能够推迟这个函数的表达式，让它到程序运行的时候才决定到底指针是什么类型的，那么是不是就达到了我们的要求呢？那我们又应该怎么做呢？答案就是使用virtual关键字。</p>
-<h2 id="virtual函数的使用"><a href="#virtual函数的使用" class="headerlink" title="virtual函数的使用"></a>virtual函数的使用</h2><p>我们只需要在声明成员函数的时候，在成员函数的前面加上virtual关键字，就相当于指示了编译器不要在编译阶段决定这个函数，不要做静态绑定，而是要在程序运行的时候实现动态的绑定，比如上面这个例子，我们就可以在每个类的print函数上如此声明：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">//在类外声明print的具体功能</span></span><br><span class="line"><span class="keyword">void</span> Base1::<span class="built_in">print</span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Base1:print"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>因为我们要实现的是在程序运行的时候再去决定函数的函数体到底是哪部分，所以最好就不要把虚函数声明成类中的内联函数，这样会导致在编译过程中直接嵌入到代码中。这样只要再执行之前写好的display函数，虽然也是调用的基类指针，但是这样就实现了函数体的动态绑定，根据传入指针的类型不同调用不同的print函数。（虚函数再编译过程中编译器不做决定，而是根据程序运行时的具体情况做决定）<br>注意，虚函数必须是非静态的成员函数，因为它是动态的，换句话说虚函数是属于具体的对象而不是属于类的，它是需要在程序运行后通过指针指向具体的对象，再判断对象的具体类，再决定调用哪个函数体。</p>
-<h2 id="virtual函数使用总结"><a href="#virtual函数使用总结" class="headerlink" title="virtual函数使用总结"></a>virtual函数使用总结</h2><ul>
-<li>一般成员函数可以是虚函数，构造函数不能是虚函数，析构函数可以是虚函数</li>
-<li>virtual关键字只能在函数原型的声明时添加，而不能在成员函数的实现时</li>
-<li>在派生类中，可以直接对基类的虚函数进行覆盖</li>
-<li>虚函数一般不声明为内联函数，因为虚函数是运行时动态调用函数体的，而内联函数在处理时是静态的</li>
-<li>如果基类声明了virtual关键字的虚函数，在继承时派生类中默认会把这个函数继承成virtual类型（如果继承的虚函数不写virtual关键字，系统会判定这个函数和基类的虚函数原型是否一致，如果一致就会将它也视为虚函数）</li>
-<li>派生类中的虚函数会隐藏基类中同名函数的所有其他重载形式，如果需要调用基类中虚函数的其他重载形式，还是需要指定类名</li>
-</ul>
+<p><a href="https://zhuanlan.zhihu.com/p/77645306" target="_blank" rel="noopener">参考链接</a></p>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>vscode本质上只是一个文本编辑器<del>大佬都用记事本写代码</del>，所以首先我们需要安装c/c++的编译环境，这里我选择的是mingw（<a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/seh/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z/download" target="_blank" rel="noopener">下载地址</a>）。下载好之后，解压到一个你找得到的文件夹（我的是C:\MinGW-w64，下面的内容都基于这个路径），然后右键计算机-高级系统设置-环境变量，然后在下方的系统变量中找到Path，双击打开，新建一个环境变量，地址填为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\MinGW-w64\bin</span><br></pre></td></tr></table></figure>
+<p>这个是我自己的路径，你们需要把前面的替换为自己刚才解压好的那个路径，保存并确定。然后运行cmd，输入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gcc -v</span><br></pre></td></tr></table></figure>
+<p>如果正常显示了编译器的版本，则证明配置成功，否则就需要检查你是否哪步出现了问题。</p>
+<h2 id="VScode插件安装及配置"><a href="#VScode插件安装及配置" class="headerlink" title="VScode插件安装及配置"></a>VScode插件安装及配置</h2><p>在VScode端，为了代码的美观性以及能够系统及时的给我们纠正错误，我们需要安装一个名为C/C++的官方拓展，如果想要简体中文，还需要安装chinese(simplified)拓展。<br>接下来找一个你经常写代码的文件夹（注意不要在路径中包含中文名，否则会产生奇奇怪怪的bug），然后用VScode打开，在这个文件夹中新建一个文件夹名为:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.vscode&#x2F;&#x2F;注意有个点</span><br></pre></td></tr></table></figure>
+<p>再在.vscode文件夹中新建两个文件，分别为launch.json和tasks.json，然后在两个文件中填入如下内容：<br>launch.json</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">    <span class="attr">"configurations"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"C/C++"</span>,</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"cppdbg"</span>,</span><br><span class="line">            <span class="attr">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">            <span class="attr">"program"</span>: <span class="string">"$&#123;fileDirname&#125;/$&#123;fileBasenameNoExtension&#125;.exe"</span>,</span><br><span class="line">            <span class="attr">"args"</span>: [],</span><br><span class="line">            <span class="attr">"stopAtEntry"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"cwd"</span>: <span class="string">"$&#123;workspaceFolder&#125;"</span>,</span><br><span class="line">            <span class="attr">"environment"</span>: [],</span><br><span class="line">            <span class="attr">"externalConsole"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"MIMode"</span>: <span class="string">"gdb"</span>,</span><br><span class="line">            <span class="attr">"miDebuggerPath"</span>: <span class="string">"gdb.exe"</span>,</span><br><span class="line">            <span class="attr">"preLaunchTask"</span>: <span class="string">"compile"</span>,</span><br><span class="line">            <span class="attr">"setupCommands"</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">"description"</span>: <span class="string">"Enable pretty-printing for gdb"</span>,</span><br><span class="line">                    <span class="attr">"text"</span>: <span class="string">"-enable-pretty-printing"</span>,</span><br><span class="line">                    <span class="attr">"ignoreFailures"</span>: <span class="literal">true</span></span><br><span class="line">                &#125;</span><br><span class="line">            ],</span><br><span class="line">        &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>tasks.json</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"version"</span>: <span class="string">"2.0.0"</span>,</span><br><span class="line">    <span class="attr">"tasks"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"type"</span>: <span class="string">"shell"</span>,</span><br><span class="line">            <span class="attr">"label"</span>: <span class="string">"compile"</span>,</span><br><span class="line">            <span class="attr">"command"</span>: <span class="string">"g++"</span>,</span><br><span class="line">            <span class="attr">"args"</span>: [</span><br><span class="line">                <span class="string">"-g"</span>,</span><br><span class="line">                <span class="string">"$&#123;file&#125;"</span>,</span><br><span class="line">                <span class="string">"-o"</span>,</span><br><span class="line">                <span class="string">"$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"problemMatcher"</span>: [</span><br><span class="line">                <span class="string">"$gcc"</span></span><br><span class="line">            ],</span><br><span class="line">            <span class="attr">"group"</span>: &#123;</span><br><span class="line">                <span class="attr">"kind"</span>: <span class="string">"build"</span>,</span><br><span class="line">                <span class="attr">"isDefault"</span>: <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好了，现在在这个你常写代码的文件夹中打开一个c/c++文件试试看吧，只需要按f5或者左侧的运行按钮，即可对你的代码进行调试了，enjoy it~</p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>
       <tags>
         <tag>c++</tag>
-        <tag>虚函数</tag>
+        <tag>vscode</tag>
       </tags>
   </entry>
 </search>
